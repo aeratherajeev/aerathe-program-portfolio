@@ -471,13 +471,13 @@
     </div>
     <figure class="feature-film">
       <div class="ff-frame">
-        <video id="ff-video" muted loop playsinline preload="none" poster="films/freedive-film.jpg" data-src="films/freedive-film.mp4" aria-label="Free-diving film: a diver rises through green water toward the light"></video>
+        <video class="ff-video" muted loop playsinline preload="none" poster="films/freedive-film.jpg" data-src="films/freedive-film.mp4" aria-label="Free-diving film: a diver rises through green water toward the light"></video>
         <div class="ff-controls">
-          <button class="ff-btn" id="ff-play" type="button" aria-label="Pause film">
+          <button class="ff-btn ff-play" type="button" aria-label="Pause film">
             <svg class="i-pause" viewBox="0 0 16 16" aria-hidden="true"><rect x="3.5" y="2.5" width="3" height="11" rx="1"/><rect x="9.5" y="2.5" width="3" height="11" rx="1"/></svg>
             <svg class="i-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 2.8v10.4c0 .5.6.8 1 .5l8-5.2a.6.6 0 0 0 0-1L5.5 2.3c-.4-.3-1 0-1 .5z"/></svg>
           </button>
-          <button class="ff-btn ff-sound" id="ff-sound" type="button" aria-pressed="false">
+          <button class="ff-btn ff-sound" type="button" aria-pressed="false">
             <svg class="i-off" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 6h2.2L8 3.2v9.6L4.7 10H2.5z"/><path d="M11 6l3.5 4M14.5 6L11 10" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
             <svg class="i-on" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 6h2.2L8 3.2v9.6L4.7 10H2.5z"/><path d="M10.5 5.5a3.5 3.5 0 0 1 0 5M12.5 3.8a6 6 0 0 1 0 8.4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
             <span class="ff-label">Sound off</span>
@@ -486,9 +486,30 @@
       </div>
       <figcaption><span>Free-diving film · 1:26</span><a href="https://www.instagram.com/oceansaerathe/" target="_blank" rel="noopener">Watch on Instagram <span aria-hidden="true">↗</span></a></figcaption>
     </figure>
+    <figure class="feature-film">
+      <div class="ff-frame">
+        <video class="ff-video" muted loop playsinline preload="none" poster="films/dancing-film.jpg" data-src="films/dancing-film.mp4" aria-label="What I’m Dancing About: a dancer moves through an empty gallery, black and white"></video>
+        <div class="ff-controls">
+          <button class="ff-btn ff-play" type="button" aria-label="Pause film">
+            <svg class="i-pause" viewBox="0 0 16 16" aria-hidden="true"><rect x="3.5" y="2.5" width="3" height="11" rx="1"/><rect x="9.5" y="2.5" width="3" height="11" rx="1"/></svg>
+            <svg class="i-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 2.8v10.4c0 .5.6.8 1 .5l8-5.2a.6.6 0 0 0 0-1L5.5 2.3c-.4-.3-1 0-1 .5z"/></svg>
+          </button>
+          <button class="ff-btn ff-sound" type="button" aria-pressed="false">
+            <svg class="i-off" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 6h2.2L8 3.2v9.6L4.7 10H2.5z"/><path d="M11 6l3.5 4M14.5 6L11 10" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+            <svg class="i-on" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 6h2.2L8 3.2v9.6L4.7 10H2.5z"/><path d="M10.5 5.5a3.5 3.5 0 0 1 0 5M12.5 3.8a6 6 0 0 1 0 8.4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+            <span class="ff-label">Sound off</span>
+          </button>
+        </div>
+      </div>
+      <figcaption><span>What I’m Dancing About · dance film · 0:29</span><a href="https://www.instagram.com/oceansaerathe/" target="_blank" rel="noopener">Watch on Instagram <span aria-hidden="true">↗</span></a></figcaption>
+    </figure>
     <div class="film-pair">
       <div class="fp-clip"><img src="films/clip-3.jpg" alt="" loading="lazy"><video muted loop playsinline preload="metadata" poster="films/clip-3.jpg" src="films/clip-3.mp4" aria-label="A dancer in a blue headscarf at an outdoor reggae festival"></video><span class="fp-play" aria-hidden="true"></span></div>
       <div class="fp-clip"><img src="films/clip-2.jpg" alt="" loading="lazy"><video muted loop playsinline preload="metadata" poster="films/clip-2.jpg" src="films/clip-2.mp4" aria-label="A man skipping rope on a graffitied wall by the sea, black and white"></video><span class="fp-play" aria-hidden="true"></span></div>
+    </div>
+    <div class="film-pair">
+      <div class="fp-clip"><img src="films/knuckle-film.jpg" alt="" loading="lazy"><video muted loop playsinline preload="metadata" poster="films/knuckle-film.jpg" src="films/knuckle-film.mp4" aria-label="Near the Knuckle: a DJ talks by the sea at an Anjuna party"></video><span class="fp-play" aria-hidden="true"></span></div>
+      <div class="fp-clip"><img src="films/wedding-film.jpg" alt="" loading="lazy"><video muted loop playsinline preload="metadata" poster="films/wedding-film.jpg" src="films/wedding-film.mp4" aria-label="Wedding film: Abe weds Faye, the bride getting ready"></video><span class="fp-play" aria-hidden="true"></span></div>
     </div>
     <div class="film-grid" id="film-grid"></div>
     <a class="btn btn-ig" href="https://www.instagram.com/oceansaerathe/" target="_blank" rel="noopener" style="margin-top:32px">More on Instagram · @oceansaerathe <span aria-hidden="true">↗</span></a>
@@ -690,38 +711,47 @@
       }, 500 + n * 150);
     });
   })();
-  // Feature film: loads only when scrolled near, plays muted on loop while on screen.
-  // Visitors can pause it and switch sound on; reduced-motion visitors start paused.
+  // Feature films: each loads only when scrolled near and plays muted on loop while on screen.
+  // Visitors can pause and switch sound on; turning sound on for one mutes the others.
+  // Reduced-motion visitors start paused.
   (function () {
-    var v = document.getElementById('ff-video'); if (!v) return;
-    var playBtn = document.getElementById('ff-play'), soundBtn = document.getElementById('ff-sound');
-    var fig = v.closest('.feature-film'), reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var userPaused = reduce, loaded = false;
-    function load() { if (!loaded) { v.src = v.getAttribute('data-src'); loaded = true; } }
-    function sync() {
-      fig.classList.toggle('is-paused', v.paused);
-      playBtn.setAttribute('aria-label', v.paused ? 'Play film' : 'Pause film');
-      fig.classList.toggle('has-sound', !v.muted);
-      soundBtn.setAttribute('aria-pressed', String(!v.muted));
-      soundBtn.querySelector('.ff-label').textContent = v.muted ? 'Sound off' : 'Sound on';
-    }
-    function play() { load(); var p = v.play(); if (p && p.catch) p.catch(function () { sync(); }); }
-    v.addEventListener('play', sync); v.addEventListener('pause', sync); v.addEventListener('volumechange', sync);
-    playBtn.addEventListener('click', function () {
-      if (v.paused) { userPaused = false; play(); } else { userPaused = true; v.pause(); }
+    var figs = [].slice.call(document.querySelectorAll('.feature-film'));
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var players = figs.map(function (fig) {
+      var v = fig.querySelector('.ff-video'), playBtn = fig.querySelector('.ff-play'), soundBtn = fig.querySelector('.ff-sound');
+      if (!v) return null;
+      var st = { v: v, userPaused: reduce, loaded: false };
+      function load() { if (!st.loaded) { v.src = v.getAttribute('data-src'); st.loaded = true; } }
+      function sync() {
+        fig.classList.toggle('is-paused', v.paused);
+        playBtn.setAttribute('aria-label', v.paused ? 'Play film' : 'Pause film');
+        fig.classList.toggle('has-sound', !v.muted);
+        soundBtn.setAttribute('aria-pressed', String(!v.muted));
+        soundBtn.querySelector('.ff-label').textContent = v.muted ? 'Sound off' : 'Sound on';
+      }
+      function play() { load(); var p = v.play(); if (p && p.catch) p.catch(function () { sync(); }); }
+      st.load = load; st.play = play;
+      v.addEventListener('play', sync); v.addEventListener('pause', sync); v.addEventListener('volumechange', sync);
+      playBtn.addEventListener('click', function () {
+        if (v.paused) { st.userPaused = false; play(); } else { st.userPaused = true; v.pause(); }
+      });
+      soundBtn.addEventListener('click', function () {
+        v.muted = !v.muted;
+        if (!v.muted) {
+          players.forEach(function (o) { if (o && o !== st) o.v.muted = true; });
+          st.userPaused = false; play();
+        }
+      });
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (en) {
+          var e = en[0];
+          if (e.isIntersecting) { load(); if (!st.userPaused) play(); }
+          else if (!v.paused) { v.pause(); }
+        }, { rootMargin: '200px 0px', threshold: 0.35 }).observe(v);
+      } else { load(); }
+      sync();
+      return st;
     });
-    soundBtn.addEventListener('click', function () {
-      v.muted = !v.muted;
-      if (!v.muted) { userPaused = false; play(); }
-    });
-    if ('IntersectionObserver' in window) {
-      new IntersectionObserver(function (en) {
-        var e = en[0];
-        if (e.isIntersecting) { load(); if (!userPaused) play(); }
-        else if (!v.paused) { v.pause(); }
-      }, { rootMargin: '200px 0px', threshold: 0.35 }).observe(v);
-    } else { load(); }
-    sync();
   })();
 </script>
 <script src="site.js" defer></script>
