@@ -322,11 +322,10 @@
             [cg - k * G, cg + k * G].some(function (t) {
               if (t < G) return false;
               var c = (W - (n - 1) * t) / n;
-              if (c >= G && Math.abs(c / G - Math.round(c / G)) < 0.01) { col = Math.round(c); gap = t; return true; }
+              if (c >= G && t <= c / 2 && Math.abs(c / G - Math.round(c / G)) < 0.01) { col = Math.round(c); gap = t; return true; }
               return false;
             });
           }
-          if (!col) col = Math.floor((W - (n - 1) * cg) / n / G) * G;
         }
         if (col > 0) { g.style.gridTemplateColumns = 'repeat(' + n + ', ' + col + 'px)'; if (gap !== cg) g.style.columnGap = gap + 'px'; mark(g); }
       }
