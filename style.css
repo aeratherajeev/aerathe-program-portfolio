@@ -1738,3 +1738,9 @@ body:not(.theme-sage-body) { background-size: 20px 20px; background-position: va
 /* Field notes list: lines only between articles */
 .writing { border-top: 0; }
 .writing li:last-child { border-bottom: 0; }
+
+/* Free-diving film and dance film side by side (stacked on phones, where the controls need the width) */
+.ff-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 40px; max-width: var(--wide); }
+.ff-pair .feature-film { margin: 0; min-width: 0; }
+.ff-pair .feature-film figcaption { font-size: 13px; }
+@media (max-width: 600px) { .ff-pair { grid-template-columns: 1fr; } }
