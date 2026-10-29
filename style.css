@@ -1746,3 +1746,15 @@ body:not(.theme-sage-body) { background-size: 20px 20px; background-position: va
 @media (max-width: 600px) { .ff-pair { grid-template-columns: 1fr; } }
 /* Films row on phones: three stills per row (shorter tiles), tighter gaps */
 @media (max-width: 760px) { .film-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 20px; row-gap: 20px; } }
+
+/* Outside work: diving film full width; dance film + rope-skipping clip side by side; one row of stills */
+#films > .feature-film { margin-bottom: 40px; }
+.ff-pair { align-items: start; }
+.ff-pair .fp-clip { min-height: 0 !important; }
+#film-grid { margin-top: 40px; }
+@media (max-width: 760px) {
+  #film-grid > :not([data-m]) { display: none; }
+  #film-grid > [data-m="1"] { order: 1; }
+  #film-grid > [data-m="2"] { order: 2; }
+  #film-grid > [data-m="3"] { order: 3; }
+}

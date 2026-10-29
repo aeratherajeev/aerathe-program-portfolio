@@ -469,7 +469,6 @@
       <h2>I free-dive, and I film people, places and moments that intrigue me.</h2>
       <p class="read muted">The same instincts carry into my work: noticing what others miss, staying calm under pressure, and paying attention to the human in the frame.</p>
     </div>
-    <div class="ff-pair">
     <figure class="feature-film">
       <div class="ff-frame">
         <video class="ff-video" muted loop playsinline preload="none" poster="films/freedive-film.jpg" data-src="films/freedive-film.mp4" aria-label="Free-diving film: a diver rises through green water toward the light"></video>
@@ -487,6 +486,7 @@
       </div>
       <figcaption><span>Free-diving film · 1:26</span></figcaption>
     </figure>
+    <div class="ff-pair">
     <figure class="feature-film">
       <div class="ff-frame">
         <video class="ff-video" muted loop playsinline preload="none" poster="films/dancing-film.jpg" data-src="films/dancing-film.mp4" aria-label="What I’m Dancing About: a dancer moves through an empty gallery, black and white"></video>
@@ -504,14 +504,7 @@
       </div>
       <figcaption><span>What I’m Dancing About · 0:29</span></figcaption>
     </figure>
-    </div>
-    <div class="film-pair">
-      <div class="fp-clip"><img src="films/clip-3.jpg" alt="" loading="lazy"><video muted loop playsinline preload="metadata" poster="films/clip-3.jpg" src="films/clip-3.mp4" aria-label="A dancer in a blue headscarf at an outdoor reggae festival"></video><span class="fp-play" aria-hidden="true"></span></div>
       <div class="fp-clip"><img src="films/clip-2.jpg" alt="" loading="lazy"><video muted loop playsinline preload="metadata" poster="films/clip-2.jpg" src="films/clip-2.mp4" aria-label="A man skipping rope on a graffitied wall by the sea, black and white"></video><span class="fp-play" aria-hidden="true"></span></div>
-    </div>
-    <div class="film-pair">
-      <div class="fp-clip"><img src="films/knuckle-film.jpg" alt="" loading="lazy"><video muted loop playsinline preload="metadata" poster="films/knuckle-film.jpg" src="films/knuckle-film.mp4" aria-label="Near the Knuckle: a DJ talks by the sea at an Anjuna party"></video><span class="fp-play" aria-hidden="true"></span></div>
-      <div class="fp-clip"><img src="films/wedding-film.jpg" alt="" loading="lazy"><video muted loop playsinline preload="metadata" poster="films/wedding-film.jpg" src="films/wedding-film.mp4" aria-label="Wedding film: Abe weds Faye, the bride getting ready"></video><span class="fp-play" aria-hidden="true"></span></div>
     </div>
     <div class="film-grid" id="film-grid"></div>
     <a class="btn btn-ig" href="https://www.instagram.com/oceansaerathe/" target="_blank" rel="noopener" style="margin-top:32px">More on Instagram · @oceansaerathe <span aria-hidden="true">↗</span></a>
@@ -623,7 +616,7 @@
         var media = f.src
           ? '<video muted loop playsinline preload="metadata"' + (f.poster ? ' poster="' + esc(f.poster) + '"' : '') + ' src="' + esc(f.src) + '" aria-label="' + esc(f.alt || '') + '"></video>'
           : '<img src="' + esc(f.poster) + '" alt="' + esc(f.alt || '') + '" loading="lazy"' + (f.position ? ' style="object-position:' + esc(f.position) + '"' : '') + '>';
-        return '<a class="film' + (f.src ? ' film-clip' : '') + '" href="' + esc(f.url || IG) + '" target="_blank" rel="noopener">' + media +
+        return '<a class="film' + (f.src ? ' film-clip' : '') + '"' + (f.mobile ? ' data-m="' + esc(f.mobile) + '"' : '') + ' href="' + esc(f.url || IG) + '" target="_blank" rel="noopener">' + media +
           (f.title ? '<span class="film-title">' + esc(f.title) + '</span>' : '') +
           (f.src ? '<span class="film-badge" aria-hidden="true">▶</span>' : '') + '</a>';
       }).join('');
