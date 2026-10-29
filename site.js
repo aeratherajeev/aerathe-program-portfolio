@@ -290,7 +290,7 @@
   var G = 20, root = document.documentElement;
   var GRIDS = '.film-pair, .sw-grid, .award-list, .lv-cards, .levels, .quotes, .phases, .film-grid, .films, .principles, .cred-grid, .flowline, .shots-grid, .proof, .stats, .decision-cards, .check-list, .lead-cards, .wr-list, .ab-path, .ab-cols, .role-scale, .method';
   var STACKS = '.work > li, .writing > li, .wr-list[data-view="list"] > li, .timeline > li, .problems > details, .cap-list > div';
-  var BLOCKS = 'main > section, main > div, main > figure, main > nav, main > a.next, .band, .clients, .awards, .section-head, .sw-grid, .award-list, .marquee, .lv-cards, .levels-cols, .role-scale, .work, .writing, .pc, .actions, .ab-banner, .ab-cols, .ab-path, .proof, .feature-film, .film-pair, .film-grid, .contact-row, .cs-hero, .cover, .about-banner, .stats, .levels, .principles, .method, .phases, .cred-grid, .flowline, .shots, .shots-grid, .table-scroll, .lead-cards, .decision-cards, .check-list, .wr-bar, .wr-list, .timeline, .cap-list, .tree, .problems, .pgroup, .phead';
+  var BLOCKS = 'main > figure, main > nav, main > a.next, .clients, .awards, .section-head, .sw-grid, .award-list, .marquee, .lv-cards, .levels-cols, .role-scale, .work, .writing, .pc, .actions, .ab-banner, .ab-cols, .ab-path, .proof, .feature-film, .film-pair, .film-grid, .contact-row, .cs-hero, .cover, .about-banner, .stats, .levels, .principles, .method, .phases, .cred-grid, .flowline, .shots, .shots-grid, .table-scroll, .lead-cards, .decision-cards, .check-list, .wr-bar, .wr-list, .timeline, .cap-list, .tree, .problems, .pgroup, .phead';
   var mod = function (n) { return ((n % G) + G) % G; };
   var busy = false, raf = 0, lastW = 0, lastH = 0;
   function mark(el) { el.setAttribute('data-snap', ''); }
@@ -342,6 +342,7 @@
     // 3. block tops onto dot rows (dots sit at y = 10, 30, 50 … in page coordinates)
     function snapTops() {
       document.querySelectorAll(BLOCKS).forEach(function (el) {
+        if (el.classList.contains('band') || el.matches('main > section, main > div')) return;
         for (var i = 0; i < 4; i++) {
           var top = el.getBoundingClientRect().top + window.scrollY;
           var d = mod(G / 2 - top);
@@ -354,11 +355,6 @@
       });
     }
     snapTops();
-    // bands end on a dot row too
-    document.querySelectorAll('.band').forEach(function (b) {
-      var add = mod(-b.getBoundingClientRect().height);
-      if (add > 0.5 && add < G - 0.5) { b.style.paddingBottom = (px(getComputedStyle(b).paddingBottom) + add) + 'px'; mark(b); }
-    });
     snapTops();
     align();
     lastW = cw; lastH = document.documentElement.scrollHeight;
