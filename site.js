@@ -57,7 +57,7 @@
   // Image placeholders: a .thumb or .cover shows its label until its image file loads.
   // Drop the real file in at the same path and it appears automatically.
   document.querySelectorAll('.thumb img, .cover img').forEach(function (img) {
-    var box = img.parentElement;
+    var box = img.closest('.thumb, .cover') || img.parentElement;
     function filled() { if (img.naturalWidth) box.classList.add('has-img'); }
     if (img.complete) filled();
     img.addEventListener('load', filled);

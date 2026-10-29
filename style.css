@@ -1758,3 +1758,17 @@ body:not(.theme-sage-body) { background-size: 20px 20px; background-position: va
   #film-grid > [data-m="2"] { order: 2; }
   #film-grid > [data-m="3"] { order: 3; }
 }
+
+/* Case studies: rows sized by content (no grid rounding), so divider lines sit centred between rows */
+.work li { min-height: 0 !important; }
+/* Mobile: each case study is a soft card: wide thumbnail, then label, title, line */
+@media (max-width: 760px) {
+  .work { display: flex; flex-direction: column; gap: 20px; }
+  .work li, .work li:last-child { border-bottom: 0; }
+  .work a, .work li:last-child a { display: flex; flex-direction: column; align-items: stretch; gap: 0; padding: 12px 12px 22px; margin-inline: 0; border-radius: 22px; background: var(--soft); border: 1px solid var(--line); }
+  .work a:hover { background: var(--soft); }
+  .work .thumb, .work .thumb.has-img { order: 0; margin-bottom: 18px; aspect-ratio: 12 / 5; border: 1px solid var(--line); border-radius: 14px; }
+  .work .meta { order: 1; align-self: flex-start; text-align: left; font-size: 13px; margin: 0 6px 6px; letter-spacing: .01em; }
+  .work .work-text { order: 2; gap: 6px; padding: 0 6px; }
+  .work .work-text p { font-size: 16px; line-height: 1.5; }
+}
