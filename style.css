@@ -1777,3 +1777,11 @@ body:not(.theme-sage-body) { background-size: 20px 20px; background-position: va
   .work li:last-child a { padding-bottom: 20px; }
   #work { padding-bottom: 60px; }
 }
+/* Mobile case study cards: white card, thumbnail runs edge to edge across the top */
+@media (max-width: 760px) {
+  .work a, .work li:last-child a { padding: 0 0 22px; overflow: hidden; background: #fff; }
+  .work a:hover { background: #fff; }
+  .work .thumb, .work .thumb.has-img { border: 0; border-bottom: 1px solid var(--line); border-radius: 0; margin-bottom: 18px; }
+  .work .meta { margin: 0 18px 6px; }
+  .work .work-text { padding: 0 18px; }
+}
