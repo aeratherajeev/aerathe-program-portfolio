@@ -1772,3 +1772,8 @@ body:not(.theme-sage-body) { background-size: 20px 20px; background-position: va
   .work .work-text { order: 2; gap: 6px; padding: 0 6px; }
   .work .work-text p { font-size: 16px; line-height: 1.5; }
 }
+/* Desktop: last case study keeps the same padding as the others (even hover panel); section trims the difference */
+@media (min-width: 761px) {
+  .work li:last-child a { padding-bottom: 20px; }
+  #work { padding-bottom: 60px; }
+}
