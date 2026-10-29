@@ -2,7 +2,8 @@
   {
     "poster": "films/birds.jpg",
     "alt": "Birds in flight against a white sky, black and white",
-    "url": ""
+    "url": "",
+    "mobile": 1
   },
   {
     "poster": "films/dancing.jpg",
@@ -18,7 +19,8 @@
   {
     "poster": "films/mountains.jpg",
     "alt": "A jeep parked high in the Himalayas",
-    "url": ""
+    "url": "",
+    "mobile": 3
   },
   {
     "poster": "films/portrait.jpg",
@@ -29,6 +31,7 @@
     "poster": "films/goa-moodboard.jpg",
     "alt": "Goa moodboard: a dark wave rising against a pink dusk sky",
     "position": "right center",
-    "url": ""
+    "url": "",
+    "mobile": 2
   }
 ]
