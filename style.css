@@ -1735,3 +1735,6 @@ body:not(.theme-sage-body) { background-size: 20px 20px; background-position: va
 .work li:last-child { border-bottom: 0; }
 .work li:last-child a { padding-bottom: 0; }
 .work { border-top: 0; }
+/* Field notes list: lines only between articles */
+.writing { border-top: 0; }
+.writing li:last-child { border-bottom: 0; }
