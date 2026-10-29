@@ -1715,3 +1715,19 @@ body:not(.theme-sage-body) { background-size: 20px 20px; background-position: va
 .fp-play::after { content: ""; position: absolute; left: 17px; top: 13px; border-style: solid; border-width: 9px 0 9px 14px; border-color: transparent transparent transparent #fff; }
 .fp-clip.is-blocked .fp-play { display: block; }
 @media (max-width: 600px) { .fp-clip { border-radius: 10px; } }
+
+/* Awards: laurel + project + award · year, no card. Whole item links to the award page. */
+.awards .awards-head { justify-content: center; text-align: center; margin-bottom: 40px; }
+.award-laurels { column-gap: 40px; row-gap: 40px; }
+.award-laurels a, .award-laurels a:hover, .award-laurels a:focus-visible { border: 0; box-shadow: none; padding: 0; background: none; transform: none; border-radius: 8px; }
+.award-laurels a { align-items: center; text-align: center; color: var(--fg); }
+.aw-laurel { width: 52px; height: 50px; margin-bottom: 14px; color: var(--gold); }
+.aw-title { font-size: 19px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.3; text-decoration: underline; text-decoration-color: transparent; text-decoration-thickness: 1px; text-underline-offset: 4px; transition: text-decoration-color .2s ease; }
+.aw-meta { margin-top: 4px; font-size: 15px; color: var(--muted); }
+.aw-ext { display: inline-block; margin-left: 6px; font-size: 15px; font-weight: 500; opacity: 0; transition: opacity .2s ease, transform .2s ease; }
+.award-laurels a:hover .aw-title, .award-laurels a:focus-visible .aw-title { text-decoration-color: currentColor; }
+.award-laurels a:hover .aw-ext, .award-laurels a:focus-visible .aw-ext { opacity: 1; transform: translate(1px, -1px); }
+@media (hover: none) { .aw-ext { opacity: .6; } }
+@media (max-width: 760px) { .award-laurels { row-gap: 40px; } .aw-laurel { width: 44px; height: 42px; margin-bottom: 10px; } .aw-title { font-size: 17px; } .aw-meta { font-size: 14px; } }
+.aw-title { position: relative; }
+.aw-ext { position: absolute; left: 100%; top: 0; }
