@@ -1,0 +1,34 @@
+[
+  {
+    "poster": "films/birds.jpg",
+    "alt": "Birds in flight against a white sky, black and white",
+    "url": ""
+  },
+  {
+    "poster": "films/dancing.jpg",
+    "alt": "What I'm Dancing About, a dance film",
+    "position": "left center",
+    "url": ""
+  },
+  {
+    "poster": "films/ananas.jpg",
+    "alt": "Underwater fashion film for Ananás the label",
+    "url": ""
+  },
+  {
+    "poster": "films/mountains.jpg",
+    "alt": "A jeep parked high in the Himalayas",
+    "url": ""
+  },
+  {
+    "poster": "films/portrait.jpg",
+    "alt": "Portrait film of Prathamesh Maulingkar by the sea",
+    "url": ""
+  },
+  {
+    "poster": "films/goa-moodboard.jpg",
+    "alt": "Goa moodboard: a dark wave rising against a pink dusk sky",
+    "position": "right center",
+    "url": ""
+  }
+]

@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="color-scheme" content="light">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Making design buildable · Aerathe Rajeev Nair</title>
+<meta name="description" content="Five mandatory design–development gates that catch feasibility issues while redesign is still cheap.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Making design buildable · Aerathe Rajeev Nair">
+<meta property="og:description" content="Five mandatory design–development gates that catch feasibility issues while redesign is still cheap.">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="page-case" style="--c1:#7fe3ea;--c2:#3f6fc8;--c3:#5fd0e6;--hl:#ffffff">
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html">Aerathe Rajeev Nair</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav"><span class="menu-icon" aria-hidden="true"></span><span class="sr-only">Menu</span></button>
+    <nav class="nav" id="site-nav" aria-label="Main">
+      <a href="index.html#work" aria-current="page">Work</a>
+      <a href="problems.html">Approach</a>
+      <a href="about.html">About</a>
+      <a href="writing.html">Writing</a>
+      <a href="index.html#films">Films</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </div>
+  <div class="progress" aria-hidden="true"><span></span></div>
+</header>
+
+<main class="wrap" id="main">
+
+  <div class="cs-hero">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span aria-hidden="true">/</span><a href="index.html#work">Work</a><span aria-hidden="true">/</span><span aria-current="page">Design–dev gates</span></nav>
+    <h1>Making design buildable</h1>
+    <p class="lede">Introduced mandatory design–development gates that catch feasibility problems while redesign is still cheap, not after the client has signed off.</p>
+    <div class="cs-meta"><span>Lollypop Design Studio</span><span>2024–25</span><span>Delivery governance</span></div>
+  </div>
+
+  <figure class="cover" data-label="The five gates on a delivery timeline, or a page from the handoff checklist"><img src="img/cover-gates.jpg" alt="Design–development gates"></figure>
+
+  <nav class="onpage" aria-label="On this page"><span class="label">On this page</span><a href="#outcomes">Outcomes</a><a href="#problem">The problem</a><a href="#gates">The gates</a><a href="#checklist">Handoff checklist</a><a href="#skipped">When a gate was skipped</a><a href="#stick">Making it stick</a><a href="#model">Operating model</a></nav>
+
+  <div class="cs-section band band-soft" id="outcomes">
+    <div class="sec-head"><span class="sec-ill"><svg viewBox="0 0 48 48" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 40h32"/><rect x="11" y="26" width="6" height="14" rx="1"/><rect x="21" y="18" width="6" height="22" rx="1" class="f"/><rect x="31" y="10" width="6" height="30" rx="1"/></g></svg></span><div><span class="sec-n">01</span><h2>Outcomes</h2></div></div>
+    <div class="stats">
+      <div><strong>5 mandatory gates</strong><span>From discovery to live-build QA, on every design–development project</span></div>
+      <div><strong>Piloted on 4 projects</strong><span>Then rolled out across the studio</span></div>
+      <div><strong>22-point handoff checklist</strong><span>Seven categories, each with the reason it matters to engineering</span><a class="btn btn-secondary" href="https://docs.google.com/spreadsheets/d/1l8Akinxrc-pzdWQZz53VBda0kB1PbyZC/edit?rtpof=true" target="_blank" rel="noopener" style="margin-top:16px;align-self:flex-start">Download checklist <span aria-hidden="true">↗</span></a></div>
+      <div><strong>First retrospectives on build projects</strong><span>Weekly signals captured across seven categories</span></div>
+    </div>
+  </div>
+
+  <div class="cs-section" id="problem">
+    <div class="sec-head"><span class="sec-ill"><svg viewBox="0 0 48 48" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M24 7l18 32H6z"/><path d="M24 19v9"/><circle cx="24" cy="33" r="1.2" class="f"/></g></svg></span><div><span class="sec-n">02</span><h2>The problem</h2></div></div>
+    <div class="read">
+      <p>Design and engineering worked as separate functions. Designs went to the client, got signed off, and only then reached engineering, when it was too late to influence anything. Feasibility was judged after commitments were made.</p>
+      <p>"Handoff" meant sharing screens. Copy often arrived after the UI was built, and real word counts broke containers and pages. Clients rarely pay for that kind of rework, so it came out of margin. One complex project absorbed more than 36 manweeks of unplanned, unbilled development buffer.</p>
+      <p>There was a cultural gap too. Designers read engineering feedback as diluting their work, and engineers saw designs drawn without regard for build effort.</p>
+      <p><strong>The underlying issue was systemic.</strong> Critical delivery decisions depended on individual experience and project-by-project habits instead of a consistent operating model.</p>
+    </div>
+  </div>
+
+  <div class="cs-section" id="gates">
+    <div class="sec-head"><span class="sec-ill"><svg viewBox="0 0 48 48" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 40V14l8-6 8 6v26M24 40V14l8-6 8 6v26"/><path d="M8 26h32" /><rect x="12" y="28" width="8" height="12" class="f"/></g></svg></span><div><span class="sec-n">03</span><h2>The gates</h2></div></div>
+    <p class="closing" style="margin-bottom:16px">Handoff stopped being a file-sharing event and became a governed delivery milestone.</p>
+    <p class="read muted" style="margin-bottom:28px">Each gate sits where a change is still cheap. Project managers own adherence; I joined internal kickoffs on design–development projects to walk teams through them.</p>
+    <ol class="gates gates-5">
+      <li class="gate"><em>Gate 1</em><b>Feature feasibility</b><span>End of discovery: IA and feature list reviewed with development</span></li>
+      <li class="gate"><em>Gate 2</em><b>Design feasibility</b><span>Before any client presentation: development reviews wireframes and UI</span></li>
+      <li class="gate"><em>Gate 3</em><b>Structured handoff</b><span>Complete only when engineering accepts it, not when design shares files</span></li>
+      <li class="gate"><em>Gate 4</em><b>Design QA</b><span>Designers review the live build against the approved design</span></li>
+      <li class="gate"><em>Gate 5</em><b>Content readiness</b><span>Real copy by the wireframe stage; no placeholders go to development</span></li>
+    </ol>
+    <div class="read" style="margin-top:40px">
+      <p><strong>Why content is a gate.</strong> Layouts designed around placeholder copy break when real text arrives. Clients now start finalising copy at the wireframe stage, and where it's still unresolved, PMs raise the delivery impact with the client instead of silently passing the risk to development.</p>
+    </div>
+    <div class="questions">
+      <p class="label">The questions the design feasibility review asks</p>
+      <ol>
+        <li>Can we build this within the scoped timeline?</li>
+        <li>Is there a reusable component or established library that keeps the same intent?</li>
+        <li>Do complex interactions, animations or custom widgets add build risk?</li>
+        <li>Which technical decisions must be made before the design is committed?</li>
+      </ol>
+      <p class="read muted">The aim isn't to limit design ambition. It's to keep the intent while making effort and risk visible early.</p>
+    </div>
+    <div class="catches">
+      <p class="label">What the design feasibility gate catches</p>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>The design proposed</th><th>What development suggested</th></tr></thead>
+          <tbody>
+            <tr><td>Nested swipe carousels</td><td>Paginated scrolling that behaves the same on every device</td></tr>
+            <tr><td>A calendar widget built from scratch</td><td>A configurable open-source component</td></tr>
+            <tr><td>A new button, card or form style on every screen</td><td>A small set of reusable components, faster to build and test</td></tr>
+            <tr><td>Four or more font weights and styles in one layout</td><td>Two or three weights from one family</td></tr>
+            <tr><td>Bespoke charts with angled bars and floating labels</td><td>A chart library, customised within its limits</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="read muted" style="margin-top:16px">In each case the design idea wasn't wrong. It needed to fit the build time.</p>
+    </div>
+  </div>
+
+  <div class="cs-section band band-soft" id="checklist">
+    <div class="sec-head"><span class="sec-ill"><svg viewBox="0 0 48 48" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="6" width="28" height="36" rx="3"/><path d="M17 16l2.5 2.5L24 14M17 26l2.5 2.5L24 24M17 36l2.5 2.5L24 34M28 16h5M28 26h5M28 36h5"/></g></svg></span><div><span class="sec-n">04</span><h2>The handoff checklist</h2></div></div>
+    <div class="read">
+      <p>Gate 3 runs on a shared template every project copies. It has three parts: a project summary with every file, link and owner; a 22-point checklist across seven categories, each with the reason it matters to engineering; and a screen-by-screen log of sign-off and handover dates.</p>
+    </div>
+    <ul class="check-cats">
+      <li>File and page organisation</li><li>Components and design system</li><li>Design tokens and style guide</li><li>Responsive behaviour</li><li>Screens and states</li><li>Annotations and documentation</li><li>Assets and exports</li>
+    </ul>
+    <p class="read muted" style="margin-top:20px">Alongside it, knowledge-transfer calls are recorded and saved to a shared drive, and developers log edge cases and open questions as comments on the design file.</p>
+    <a class="btn btn-primary" href="https://docs.google.com/spreadsheets/d/1l8Akinxrc-pzdWQZz53VBda0kB1PbyZC/edit?rtpof=true" target="_blank" rel="noopener" style="margin-top:28px">Download the checklist (.xlsx) <span aria-hidden="true">↗</span></a>
+  </div>
+
+  <div class="cs-section" id="skipped">
+    <div class="sec-head"><span class="sec-ill"><svg viewBox="0 0 48 48" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="26" r="15"/><path d="M24 18v8l5 4M18 6h12"/></g></svg></span><div><span class="sec-n">05</span><h2>When a gate was skipped</h2></div></div>
+    <div class="read callout-alert">
+      <p>On one project, development came into scope only in the last week of UI, and the design feasibility review didn't happen. The UI included animations that changed with user input. Simple motion ships easily as Lottie, but interactive, state-based animation is better built in Rive, and nobody had flagged it.</p>
+      <p>The result was <strong>121 extra hours (about 3.5 weeks) of rework</strong> and a request for the client to buy a Rive licence late in the project.</p>
+      <p>I treated it as a process miss, not a tooling one, and turned it into a rule for every PM: classify animations as motion-only or interactive during UI planning, raise interactive work with sales and the client early, and request an engineering review for animation-heavy UI even when development isn't in scope.</p>
+    </div>
+  </div>
+
+  <div class="cs-section" id="stick">
+    <div class="sec-head"><span class="sec-ill"><svg viewBox="0 0 48 48" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="10" r="4" class="f"/><path d="M24 14v28M14 22h20M8 30c0 7 7 12 16 12s16-5 16-12"/></g></svg></span><div><span class="sec-n">06</span><h2>Making it stick</h2></div></div>
+    <div class="read">
+      <ul class="lead-cards">
+        <li><strong>Pilot first.</strong> The gates ran on 4 projects. I gathered what felt like overhead and adjusted before the studio-wide rollout.</li>
+        <li><strong>Explain the why, then hold the line.</strong> When teams started skipping the design gate, I wrote to the PM team with real examples of what it catches, and made scheduling the joint review the PM's job.</li>
+        <li><strong>Make review easy.</strong> A dedicated channel for screen-review requests, so asking development for a check takes one message.</li>
+        <li><strong>Learn on purpose.</strong> I set up the studio's first retrospectives on development projects. PMs logged weekly notes on scope shifts, estimation gaps, handoff friction, resourcing, sales support, context gaps and gate adherence.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="cs-section band band-soft" id="model">
+    <div class="sec-head"><span class="sec-ill"><svg viewBox="0 0 48 48" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M38 24a14 14 0 1 1-4-10"/><path d="M38 8v8h-8"/><circle cx="24" cy="24" r="4" class="f"/></g></svg></span><div><span class="sec-n">07</span><h2>The operating model</h2></div></div>
+    <ol class="chain" aria-label="Operating model loop">
+      <li><span>Prevent</span></li><li><span>Standardise</span></li><li><span>Assign accountability</span></li><li><span>Observe</span></li><li><span>Improve</span></li>
+    </ol>
+    <dl class="cap-list" style="margin-top:28px">
+      <div><dt>Prevent</dt><dd>Catch feasibility, content and dependency risks before they become expensive build problems</dd></div>
+      <div><dt>Standardise</dt><dd>Define what good handoff and QA look like through mandatory gates and a shared checklist</dd></div>
+      <div><dt>Assign accountability</dt><dd>PMs own gate adherence; design and development own their inputs</dd></div>
+      <div><dt>Observe</dt><dd>Track friction, estimation gaps, scope changes and exceptions every week</dd></div>
+      <div><dt>Improve</dt><dd>Use retrospectives to turn one project's lessons into changes to the shared workflow, which feeds back into Prevent</dd></div>
+    </dl>
+  </div>
+
+  <div class="cs-section band band-dark case-closing">
+    <p class="closing">Handoff isn't complete when design shares the files. It's complete when engineering accepts them.</p>
+  </div>
+
+  <a class="next" href="studio.html"><span>Back to the first case study</span><strong>Operationalising a 250+ designer studio →</strong></a>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Aerathe Rajeev Nair</span>
+    <span class="socials"><a href="https://aerathe.medium.com/" target="_blank" rel="noopener">Medium</a><a href="https://aerathe.substack.com/" target="_blank" rel="noopener">Substack</a><a href="https://www.linkedin.com/in/aeratherajeev/" target="_blank" rel="noopener">LinkedIn</a><a href="https://www.instagram.com/oceansaerathe/" target="_blank" rel="noopener">Instagram</a></span>
+  </div>
+</footer>
+<script src="site.js" defer></script>
+</body>
+</html>
