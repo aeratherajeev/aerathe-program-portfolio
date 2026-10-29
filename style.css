@@ -1717,7 +1717,7 @@ body:not(.theme-sage-body) { background-size: 20px 20px; background-position: va
 @media (max-width: 600px) { .fp-clip { border-radius: 10px; } }
 
 /* Awards: laurel + project + award · year, no card. Whole item links to the award page. */
-.awards .awards-head { justify-content: center; text-align: center; margin-bottom: 40px; }
+.awards .awards-head { margin-bottom: 40px; }
 .award-laurels { column-gap: 40px; row-gap: 40px; }
 .award-laurels a, .award-laurels a:hover, .award-laurels a:focus-visible { border: 0; box-shadow: none; padding: 0; background: none; transform: none; border-radius: 8px; }
 .award-laurels a { align-items: center; text-align: center; color: var(--fg); }
