@@ -1759,8 +1759,6 @@ body:not(.theme-sage-body) { background-size: 20px 20px; background-position: va
   #film-grid > [data-m="3"] { order: 3; }
 }
 
-/* Case studies: rows sized by content (no grid rounding), so divider lines sit centred between rows */
-.work li { min-height: 0 !important; }
 /* Mobile: each case study is a soft card: wide thumbnail, then label, title, line */
 @media (max-width: 760px) {
   .work { display: flex; flex-direction: column; gap: 20px; }
@@ -1772,11 +1770,6 @@ body:not(.theme-sage-body) { background-size: 20px 20px; background-position: va
   .work .work-text { order: 2; gap: 6px; padding: 0 6px; }
   .work .work-text p { font-size: 16px; line-height: 1.5; }
 }
-/* Desktop: last case study keeps the same padding as the others (even hover panel); section trims the difference */
-@media (min-width: 761px) {
-  .work li:last-child a { padding-bottom: 20px; }
-  #work { padding-bottom: 60px; }
-}
 /* Mobile case study cards: white card, thumbnail runs edge to edge across the top */
 @media (max-width: 760px) {
   .work a, .work li:last-child a { padding: 0 0 22px; overflow: hidden; background: #fff; }
@@ -1785,3 +1778,32 @@ body:not(.theme-sage-body) { background-size: 20px 20px; background-position: va
   .work .meta { margin: 0 18px 6px; }
   .work .work-text { padding: 0 18px; }
 }
+
+/* Case studies: outcome cards. Each card leads with a real result from the case study, then the story. */
+.work { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; border: 0; }
+.work li, .work li:last-child { border: 0; }
+.work a, .work li:last-child a { display: flex; flex-direction: column; align-items: stretch; gap: 0; height: 100%; padding: 28px; margin: 0; border-radius: 22px; background: #fff; border: 1px solid var(--line); overflow: visible; transition: border-color .2s ease, box-shadow .25s ease; }
+.work a:hover { background: #fff; border-color: color-mix(in srgb, var(--fg) 25%, var(--line)); box-shadow: 0 14px 30px -22px rgba(0,0,0,.3); }
+.work a:hover h3 .arrow { transform: translateX(4px); }
+.work .meta { order: 0; align-self: flex-start; text-align: left; margin: 0 0 18px; font-size: 13px; grid-column: auto; }
+.cs-stat { order: 1; display: flex; flex-direction: column; gap: 6px; padding-bottom: 18px; margin-bottom: 18px; border-bottom: 1px solid var(--line); }
+.cs-stat b { font-size: 40px; line-height: 1; font-weight: 600; letter-spacing: -0.03em; color: var(--fg); white-space: nowrap; }
+.cs-stat span { font-size: 13px; line-height: 1.35; color: var(--muted); }
+.work .work-text { order: 2; padding: 0; gap: 6px; }
+.work .work-text p { font-size: 15px; line-height: 1.5; }
+@media (max-width: 760px) {
+  .work { grid-template-columns: 1fr; }
+  .work a, .work li:last-child a { padding: 22px; background: #fff; }
+  .cs-stat b { font-size: 36px; }
+}
+
+/* Selected work: shorter 2:1 image cards; the link line is replaced by a ↗ after the name */
+.sw-thumb { aspect-ratio: 2 / 1; margin-bottom: 12px; }
+.sw-grid { gap: 36px 40px; }
+.sw-name { font-weight: 600; }
+.sw-name::after { content: " ↗"; color: var(--muted); font-weight: 400; }
+.sw-desc { font-size: 14px; }
+.sw-cta { display: none; }
+.sw-card:hover .sw-name, .sw-card:focus-visible .sw-name { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+#selected.sw-light { padding-block: 80px; }
+@media (max-width: 760px) { .sw-grid { grid-auto-columns: 70%; gap: 20px; } }
