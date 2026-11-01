@@ -1807,3 +1807,15 @@ body:not(.theme-sage-body) { background-size: 20px 20px; background-position: va
 .sw-card:hover .sw-name, .sw-card:focus-visible .sw-name { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
 #selected.sw-light { padding-block: 80px; }
 @media (max-width: 760px) { .sw-grid { grid-auto-columns: 70%; gap: 20px; } }
+
+/* Selected work: destination label after the category (App Store / Google Play / Website); every card the same height */
+.sw-name::after { content: none; }
+.sw-dest { color: var(--fg); font-weight: 500; white-space: nowrap; }
+.sw-dest span { display: inline-block; transition: transform .2s ease; }
+.sw-card:hover .sw-dest span, .sw-card:focus-visible .sw-dest span { transform: translate(2px, -2px); }
+.sw-card:hover .sw-dest, .sw-card:focus-visible .sw-dest { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+.sw-card:hover .sw-name, .sw-card:focus-visible .sw-name { text-decoration: none; }
+.sw-grid { grid-auto-rows: 1fr; }
+.sw-grid > li { display: flex; }
+.sw-card { flex: 1; height: auto; }
+.sw-meta { margin-top: auto; margin-bottom: 0; padding-top: 10px; }
