@@ -371,15 +371,41 @@
       return cs.display !== 'inline' && cs.display.indexOf('table') !== 0 && px(cs.borderBottomWidth) > 0 && cs.borderBottomStyle !== 'none' &&
         !/rgba\(0, 0, 0, 0\)|transparent/.test(cs.borderBottomColor) && el.getBoundingClientRect().width >= 200 && visible(el) && !el.closest(SKIP);
     }
-    function snapBottoms() {
+    function snapBottoms(pass) {
       var main = document.querySelector('main'); if (!main) return;
       main.querySelectorAll('*').forEach(function (el) {
-        if (!bottomLined(el)) return;
+        if (!bottomLined(el) || el.__rounded) return;
         var r = el.getBoundingClientRect(), bottom = r.bottom + window.scrollY;
+        // wait for the top to settle on a dot row first, or the height gets corrected twice
+        var dt = mod(G / 2 - (r.top + window.scrollY));
+        if (pass < 5 && dt > 0.5 && dt < G - 0.5) return;
         var d = mod(G / 2 - bottom);
         if (d < 0.5 || d > G - 0.5) return;
+        // bottom just past a dot row: trim the overshoot from the bottom padding rather than adding a near-empty square
+        var back = G - d, pb = px(getComputedStyle(el).paddingBottom);
+        el.__base = el.__base || {};
+        if (back <= 6 && pb - back >= 12 && el.__base.trim == null) {
+          el.__base.trim = back; mark(el); el.style.setProperty('padding-bottom', (pb - back) + 'px', 'important'); return;
+        }
         mark(el); el.style.setProperty('min-height', nearest(el, 'h', r.height, d) + 'px', 'important');
       });
+    }
+    // round a card up to whole squares from its natural height, so repeated passes never keep growing it
+    function roundUp(c) {
+      c.__base = c.__base || {};
+      if (c.__base.nat == null) c.__base.nat = c.getBoundingClientRect().height;
+      var h = c.__base.nat, want = Math.ceil(h / G - 0.025) * G;
+      if (!h) return;
+      c.__rounded = true;
+      // only a few pixels over a whole square: take them out of the bottom padding instead of adding a near-empty square
+      var over = mod(h), pb = px(getComputedStyle(c).paddingBottom);
+      if (over > 0.5 && over <= 6 && pb - over >= 12 && c.__base.trim == null) {
+        c.__base.trim = over; mark(c);
+        c.style.setProperty('padding-bottom', (pb - over) + 'px', 'important');
+        c.__base.nat = h - over; want = c.__base.nat;
+      }
+      if (Math.abs(c.getBoundingClientRect().height - want) < 0.5) return;
+      mark(c); c.style.minHeight = want + 'px';
     }
     function roundHeights() {
       // 2. card grids: whole-square columns, whole-square card heights
@@ -407,22 +433,17 @@
         }
         if (col > 0) { var tpl = 'repeat(' + n + ', ' + col + 'px)'; if (g.style.gridTemplateColumns !== tpl || (gap !== cg && g.style.columnGap !== gap + 'px')) { mark(g); g.style.gridTemplateColumns = tpl; if (gap !== cg) g.style.columnGap = gap + 'px'; } }
       }
-      if (mod(rg) === 0) [].forEach.call(g.children, function (c) {
-        var h = c.getBoundingClientRect().height;
-        if (h && mod(h) > 0.5) { mark(c); c.style.minHeight = Math.ceil(h / G) * G + 'px'; }
-      });
+      if (mod(rg) === 0) [].forEach.call(g.children, function (c) { roundUp(c); });
     });
     document.querySelectorAll('main table tr').forEach(function (tr) {
       var h = tr.getBoundingClientRect().height;
       if (h && mod(h) > 0.5) { mark(tr); tr.style.height = Math.ceil(h / G) * G + 'px'; }
     });
-    document.querySelectorAll(STACKS).forEach(function (c) {
-      var h = c.getBoundingClientRect().height;
-      if (h && mod(h) > 0.5) { mark(c); c.style.minHeight = Math.ceil(h / G) * G + 'px'; }
-    });
+    document.querySelectorAll(STACKS).forEach(roundUp);
     }
     // each adjustment can shift what follows, so repeat until a full pass changes nothing
-    for (var pass = 0; pass < 8; pass++) { changes = 0; roundHeights(); snapRhythm(); snapBottoms(); if (!changes) break; }
+    document.querySelectorAll('main *').forEach(function (el) { el.__rounded = false; });
+    for (var pass = 0; pass < 8; pass++) { changes = 0; roundHeights(); snapRhythm(); snapBottoms(pass); if (!changes) break; }
     snapRhythm();
     align();
     lastW = cw; lastH = document.documentElement.scrollHeight;
