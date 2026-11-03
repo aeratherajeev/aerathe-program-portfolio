@@ -1898,3 +1898,13 @@ body:not(.theme-sage-body) { background-size: 20px 20px; background-position: va
 .cs-rl, .cs-card:hover .cs-rl, .cs-card:focus-visible .cs-rl { color: #8e8e8e; letter-spacing: .04em; }
 .cs-link, .cs-card:hover .cs-link, .cs-card:focus-visible .cs-link { color: #000; font-weight: 500; font-size: 14px; }
 .cs-card:focus-visible { outline: 2px solid #000; outline-offset: 3px; }
+
+/* Case study cards: gradient orb (in each case study's colours) and a clearer outline */
+.cs-card { border: 1px solid rgba(0,0,0,.16); }
+.cs-card:hover, .cs-card:focus-visible { border-color: rgba(0,0,0,.24); }
+.cs-orb { display: block; width: 44px; height: 44px; margin-bottom: 16px; border-radius: 50%; flex: none;
+  background: radial-gradient(circle at 30% 30%, var(--g1), transparent 60%), radial-gradient(circle at 75% 70%, var(--g3), transparent 60%), linear-gradient(135deg, var(--g1), var(--g2) 55%, var(--g3));
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.4);
+  transition: transform .5s cubic-bezier(.2,.7,.2,1); }
+.cs-card:hover .cs-orb, .cs-card:focus-visible .cs-orb { transform: scale(1.12) rotate(25deg); }
+@media (prefers-reduced-motion: reduce) { .cs-orb { transition: none; } .cs-card:hover .cs-orb { transform: none; } }
