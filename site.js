@@ -284,27 +284,105 @@
 /* Dot-grid paper. Everything snaps to one 20px lattice of dots:
    1. the content column is a whole number of grid squares wide, so its left and right edges sit on dots;
    2. card grids get whole-square column widths, and every card is a whole number of squares tall;
-   3. key blocks (sections, bands, card grids, images) are nudged down so their top edge lands on a dot row;
+   3. every block top and every horizontal line (section dividers, card edges, list rules) lands on a dot row;
    4. bands draw their own background, so their dots get an offset that continues the same lattice. */
 (function () {
   var G = 20, root = document.documentElement;
   var GRIDS = '.cs-grid, .work, .ff-pair, .film-pair, .sw-grid, .award-list, .lv-cards, .levels, .quotes, .phases, .film-grid, .films, .principles, .cred-grid, .flowline, .shots-grid, .proof, .stats, .decision-cards, .check-list, .lead-cards, .wr-list, .ab-path, .ab-cols, .role-scale, .method';
-  var STACKS = '.work > li, .writing > li, .wr-list[data-view="list"] > li, .timeline > li, .problems > details, .cap-list > div';
-  var BLOCKS = 'main > figure, main > nav, main > a.next, .clients, .awards, .section-head, .sw-grid, .award-list, .marquee, .lv-cards, .levels-cols, .role-scale, .work, .writing, .pc, .actions, .ab-banner, .ab-cols, .ab-path, .proof, .ff-pair, .film-pair, .film-grid, .contact-row, .cs-hero, .cover, .about-banner, .stats, .levels, .principles, .method, .phases, .cred-grid, .flowline, .shots, .shots-grid, .table-scroll, .lead-cards, .decision-cards, .check-list, .wr-bar, .wr-list, .timeline, .cap-list, .tree, .problems, .pgroup, .phead';
+  var STACKS = '.table-scroll, .work > li, .writing > li, .wr-list[data-view="list"] > li, .timeline > li, .problems > details, .cap-list > div';
+  var BLOCKS = '.cs-grid, main table, main > figure, main > nav, main > a.next, .clients, .awards, .section-head, .sw-grid, .award-list, .marquee, .lv-cards, .levels-cols, .role-scale, .work, .writing, .pc, .actions, .ab-banner, .ab-cols, .ab-path, .proof, .ff-pair, .film-pair, .film-grid, .contact-row, .cs-hero, .cover, .about-banner, .stats, .levels, .principles, .method, .phases, .cred-grid, .flowline, .shots, .shots-grid, .table-scroll, .lead-cards, .decision-cards, .check-list, .wr-bar, .wr-list, .timeline, .cap-list, .tree, .problems, .pgroup, .phead';
   var mod = function (n) { return ((n % G) + G) % G; };
   var busy = false, raf = 0, lastW = 0, lastH = 0;
-  function mark(el) { el.setAttribute('data-snap', ''); }
+  // remember each element's own inline style before the grid touches it, so a re-snap restores it exactly
+  var changes = 0;
+  function mark(el) { changes++; if (!el.hasAttribute('data-snap')) { el.__snapOrig = el.getAttribute('style'); el.setAttribute('data-snap', ''); } }
   function px(v) { return parseFloat(v) || 0; }
   function snap() {
     raf = 0; busy = true;
     document.querySelectorAll('[data-snap]').forEach(function (el) {
-      el.style.marginTop = ''; el.style.minHeight = ''; el.style.gridTemplateColumns = ''; el.style.columnGap = ''; el.style.paddingBottom = '';
+      if (el.__snapOrig == null) el.removeAttribute('style'); else el.setAttribute('style', el.__snapOrig);
+      el.__base = null;
       el.removeAttribute('data-snap');
     });
     // 1. content column: a whole number of squares (920px max)
     var cw = root.clientWidth;
     root.style.setProperty('--wrap-w', Math.min(920, Math.floor((cw - 48) / G) * G) + 'px');
-    // 2. card grids: whole-square columns, whole-square card heights
+    // 3. vertical rhythm: block tops and every horizontal line land on a dot row
+    //    (dots sit at y = 10, 30, 50 … in page coordinates). Top-level sections are moved by growing the
+    //    section above them (padding, so bands never show a gap); everything else gets a little extra margin.
+    var SKIP = '.marquee, .pc-track, .sw-grid, .sea-turtles, .hero-dots';
+    function visible(el) { return el.offsetParent !== null || getComputedStyle(el).position === 'fixed'; }
+    function lined(el) {
+      var cs = getComputedStyle(el);
+      return px(cs.borderTopWidth) > 0 && cs.borderTopStyle !== 'none' && !/rgba\(0, 0, 0, 0\)|transparent/.test(cs.borderTopColor) &&
+        el.getBoundingClientRect().width >= 200;
+    }
+    function candidates() {
+      var set = new Set();
+      var main = document.querySelector('main');
+      if (!main) return [];
+      [].forEach.call(main.children, function (el) { set.add(el); });
+      document.querySelectorAll(BLOCKS).forEach(function (el) { set.add(el); });
+      main.querySelectorAll('*').forEach(function (el) { if (lined(el)) set.add(el); });
+      return Array.from(set).filter(function (el) {
+        if (!visible(el) || el.closest(SKIP)) return false;
+        var pos = getComputedStyle(el).position; if (pos === 'absolute' || pos === 'fixed') return false;
+        var pd = el.parentElement && getComputedStyle(el.parentElement).display;
+        // items laid out side by side follow their container, which is snapped instead
+        if (el.parentElement !== main) {
+          var pcs = getComputedStyle(el.parentElement);
+          var oneCol = pcs.gridTemplateColumns.split(' ').filter(Boolean).length <= 1;
+          if (((pd === 'grid' || pd === 'inline-grid') && !oneCol) || (pd === 'flex' && pcs.flexDirection.indexOf('row') === 0 && pcs.flexWrap !== 'wrap')) return false;
+        }
+        return true;
+      }).sort(function (x, y) { return x.compareDocumentPosition(y) & 4 ? -1 : 1; });
+    }
+    // nudge a length to the nearest dot row, but never below what the element had before the grid touched it
+    function nearest(el, prop, current, d) {
+      el.__base = el.__base || {};
+      if (el.__base[prop] == null) el.__base[prop] = current;
+      var v = current + (d > G / 2 ? d - G : d);
+      if (v < el.__base[prop] - 0.01) v += G;
+      return v;
+    }
+    function snapRhythm() {
+      var main = document.querySelector('main');
+      candidates().forEach(function (el) {
+        for (var i = 0; i < 4; i++) {
+          var top = el.getBoundingClientRect().top + window.scrollY;
+          var d = mod(G / 2 - top);
+          if (d < 0.5 || d > G - 0.5) break;
+          if (el.parentElement === main) {
+            var prev = el.previousElementSibling;
+            while (prev && !visible(prev)) prev = prev.previousElementSibling;
+            if (!prev) break;
+            var pb = px(getComputedStyle(prev).paddingBottom); mark(prev); prev.style.setProperty('padding-bottom', nearest(prev, 'pb', pb, d) + 'px', 'important');
+          } else {
+            // margins collapse with the block above, so start from whichever margin is larger
+            var sib = el.previousElementSibling, mt = px(getComputedStyle(el).marginTop);
+            if (sib) mt = Math.max(mt, px(getComputedStyle(sib).marginBottom));
+            mark(el); el.style.setProperty('margin-top', nearest(el, 'mt', mt, d) + 'px', 'important');
+          }
+        }
+      });
+    }
+    function bottomLined(el) {
+      var cs = getComputedStyle(el);
+      return cs.display !== 'inline' && cs.display.indexOf('table') !== 0 && px(cs.borderBottomWidth) > 0 && cs.borderBottomStyle !== 'none' &&
+        !/rgba\(0, 0, 0, 0\)|transparent/.test(cs.borderBottomColor) && el.getBoundingClientRect().width >= 200 && visible(el) && !el.closest(SKIP);
+    }
+    function snapBottoms() {
+      var main = document.querySelector('main'); if (!main) return;
+      main.querySelectorAll('*').forEach(function (el) {
+        if (!bottomLined(el)) return;
+        var r = el.getBoundingClientRect(), bottom = r.bottom + window.scrollY;
+        var d = mod(G / 2 - bottom);
+        if (d < 0.5 || d > G - 0.5) return;
+        mark(el); el.style.setProperty('min-height', nearest(el, 'h', r.height, d) + 'px', 'important');
+      });
+    }
+    function roundHeights() {
+      // 2. card grids: whole-square columns, whole-square card heights
     document.querySelectorAll(GRIDS).forEach(function (g) {
       var cs = getComputedStyle(g);
       if (cs.display !== 'grid') return;
@@ -327,34 +405,25 @@
             });
           }
         }
-        if (col > 0) { g.style.gridTemplateColumns = 'repeat(' + n + ', ' + col + 'px)'; if (gap !== cg) g.style.columnGap = gap + 'px'; mark(g); }
+        if (col > 0) { var tpl = 'repeat(' + n + ', ' + col + 'px)'; if (g.style.gridTemplateColumns !== tpl || (gap !== cg && g.style.columnGap !== gap + 'px')) { mark(g); g.style.gridTemplateColumns = tpl; if (gap !== cg) g.style.columnGap = gap + 'px'; } }
       }
       if (mod(rg) === 0) [].forEach.call(g.children, function (c) {
         var h = c.getBoundingClientRect().height;
-        if (h && mod(h) > 0.5) { c.style.minHeight = Math.ceil(h / G) * G + 'px'; mark(c); }
+        if (h && mod(h) > 0.5) { mark(c); c.style.minHeight = Math.ceil(h / G) * G + 'px'; }
       });
+    });
+    document.querySelectorAll('main table tr').forEach(function (tr) {
+      var h = tr.getBoundingClientRect().height;
+      if (h && mod(h) > 0.5) { mark(tr); tr.style.height = Math.ceil(h / G) * G + 'px'; }
     });
     document.querySelectorAll(STACKS).forEach(function (c) {
       var h = c.getBoundingClientRect().height;
-      if (h && mod(h) > 0.5) { c.style.minHeight = Math.ceil(h / G) * G + 'px'; mark(c); }
+      if (h && mod(h) > 0.5) { mark(c); c.style.minHeight = Math.ceil(h / G) * G + 'px'; }
     });
-    // 3. block tops onto dot rows (dots sit at y = 10, 30, 50 … in page coordinates)
-    function snapTops() {
-      document.querySelectorAll(BLOCKS).forEach(function (el) {
-        if (el.classList.contains('band') || el.matches('main > section, main > div')) return;
-        for (var i = 0; i < 4; i++) {
-          var top = el.getBoundingClientRect().top + window.scrollY;
-          var d = mod(G / 2 - top);
-          if (d < 0.5 || d > G - 0.5) break;
-          // margins collapse with the block above, so start from whichever margin is larger
-          var prev = el.previousElementSibling, mt = px(getComputedStyle(el).marginTop);
-          if (prev) mt = Math.max(mt, px(getComputedStyle(prev).marginBottom));
-          el.style.marginTop = (mt + d) + 'px'; mark(el);
-        }
-      });
     }
-    snapTops();
-    snapTops();
+    // each adjustment can shift what follows, so repeat until a full pass changes nothing
+    for (var pass = 0; pass < 8; pass++) { changes = 0; roundHeights(); snapRhythm(); snapBottoms(); if (!changes) break; }
+    snapRhythm();
     align();
     lastW = cw; lastH = document.documentElement.scrollHeight;
     busy = false;
@@ -378,6 +447,9 @@
   window.addEventListener('resize', function () { if (root.clientWidth !== lastW) queue(); });
   window.addEventListener('load', queue);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(queue);
+  // web fonts can finish after the first pass and shift everything by a few pixels: settle again
+  if (document.fonts && document.fonts.addEventListener) document.fonts.addEventListener('loadingdone', queue);
+  window.addEventListener('load', function () { setTimeout(queue, 600); setTimeout(queue, 1800); });
   // late content (images, lists filled by script, opened cards) changes heights: re-snap
   if ('ResizeObserver' in window) new ResizeObserver(function () {
     if (!busy && Math.abs(document.documentElement.scrollHeight - lastH) > 1) queue();
