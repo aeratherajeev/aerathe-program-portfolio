@@ -1913,3 +1913,17 @@ body:not(.theme-sage-body) { background-size: 20px 20px; background-position: va
 .cs-card:hover .cs-lt, .cs-card:focus-visible .cs-lt { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
 .cs-ar { display: inline-block; text-decoration: none; transition: transform .25s ease; }
 .cs-card:hover .cs-ar, .cs-card:focus-visible .cs-ar { transform: translateX(4px); }
+
+/* Sea turtles swimming behind the content */
+.sea-turtles{position:fixed;inset:0;pointer-events:none;z-index:-1;overflow:hidden}
+.sea-turtle{position:absolute;left:0;top:0;opacity:.6;will-change:transform}
+.sea-turtle svg{display:block;width:100%;height:auto}
+.sea-turtle .tf{transform-box:fill-box;animation:tf-paddle 2.8s ease-in-out infinite}
+.sea-turtle .tf-l{transform-origin:100% 50%}
+.sea-turtle .tf-r{transform-origin:0% 50%;animation-name:tf-paddle-r}
+.sea-turtle .tb{transform-box:fill-box;transform-origin:50% 0;animation:tb-kick 2.8s ease-in-out infinite}
+@keyframes tf-paddle{0%,100%{transform:rotate(14deg)}50%{transform:rotate(-16deg)}}
+@keyframes tf-paddle-r{0%,100%{transform:rotate(-14deg)}50%{transform:rotate(16deg)}}
+@keyframes tb-kick{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(6deg)}}
+@media (prefers-reduced-motion: reduce){.sea-turtle .tf,.sea-turtle .tb{animation:none}}
+@media (max-width:640px){.sea-turtle{opacity:.4}}

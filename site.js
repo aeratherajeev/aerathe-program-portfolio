@@ -384,3 +384,44 @@
   }).observe(document.body);
   document.addEventListener('toggle', queue, true);
 })();
+
+/* Sea turtles: two line-drawn turtles swimming slowly behind the content on every page */
+(function(){
+  if(document.querySelector('.sea-turtles')) return;
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // top-down sea turtle, line drawing, facing up (−y); flippers animate
+  var SVG='<svg viewBox="0 0 80 80" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">'+
+   '<g class="tf tf-l"><path d="M27 30 C 18 24, 9 24, 4 29 C 11 30, 18 33, 25 38"/></g>'+
+   '<g class="tf tf-r"><path d="M53 30 C 62 24, 71 24, 76 29 C 69 30, 62 33, 55 38"/></g>'+
+   '<g class="tb tb-l"><path d="M29 54 C 24 57, 21 61, 20 65 C 24 63, 28 60, 31 57"/></g>'+
+   '<g class="tb tb-r"><path d="M51 54 C 56 57, 59 61, 60 65 C 56 63, 52 60, 49 57"/></g>'+
+   '<path d="M38 60 L 40 67 L 42 60"/>'+
+   '<path d="M40 14 C 44 14, 46 17, 46 20 C 46 23, 43 25, 40 25 C 37 25, 34 23, 34 20 C 34 17, 36 14, 40 14 Z"/>'+
+   '<circle cx="37.6" cy="18.5" r=".9" fill="currentColor" stroke="none"/><circle cx="42.4" cy="18.5" r=".9" fill="currentColor" stroke="none"/>'+
+   '<path d="M40 24 C 51 24, 57 33, 57 43 C 57 53, 50 61, 40 61 C 30 61, 23 53, 23 43 C 23 33, 29 24, 40 24 Z"/>'+
+   '<path d="M40 34 L 46 38 L 46 46 L 40 50 L 34 46 L 34 38 Z" opacity=".75"/>'+
+   '<path d="M40 24 V 34 M46 38 L 55 34 M46 46 L 55 50 M40 50 V 61 M34 46 L 25 50 M34 38 L 25 34" opacity=".6"/>'+
+   '</g></svg>';
+  var layer=document.createElement('div'); layer.className='sea-turtles'; layer.setAttribute('aria-hidden','true');
+  var T=[{c:'#2f9e7e',s:58,sp:.018,y0:.28,amp:.10,ph:0,dir:1,off:.15},{c:'#1f6f98',s:42,sp:.013,y0:.68,amp:.08,ph:2.1,dir:-1,off:.6}];
+  T.forEach(function(t){var e=document.createElement('div');e.className='sea-turtle';e.style.color=t.c;e.style.width=t.s+'px';e.innerHTML=SVG;layer.appendChild(e);t.el=e;});
+  document.body.appendChild(layer);
+  function pos(t,time){
+    var W=innerWidth,H=innerHeight,m=t.s*1.5, span=W+2*m;
+    var u=((time*t.sp+t.off)%1+1)%1;
+    var x=t.dir>0? -m+u*span : W+m-u*span;
+    var y=H*(t.y0+t.amp*Math.sin(u*6.283*1.2+t.ph));
+    return [x,y];
+  }
+  function frame(time){
+    T.forEach(function(t){
+      var a=pos(t,time), b=pos(t,time+0.2);
+      var ang=Math.atan2(b[1]-a[1],b[0]-a[0])*180/Math.PI+90;
+      t.el.style.transform='translate('+(a[0]-t.s/2)+'px,'+(a[1]-t.s/2)+'px) rotate('+ang+'deg)';
+    });
+  }
+  window.__turtles=frame;
+  if(reduce){frame(8);return;}
+  if(window.__turtlesManual){frame(0);return;}
+  var st=performance.now();(function loop(now){frame((now-st)/1000);requestAnimationFrame(loop);})(st);
+})();
