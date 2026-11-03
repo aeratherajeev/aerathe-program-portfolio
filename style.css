@@ -1915,7 +1915,7 @@ body:not(.theme-sage-body) { background-size: 20px 20px; background-position: va
 .cs-card:hover .cs-ar, .cs-card:focus-visible .cs-ar { transform: translateX(4px); }
 
 /* Sea turtles swimming behind the content */
-.sea-turtles{position:fixed;inset:0;pointer-events:none;z-index:-1;overflow:hidden}
+.sea-turtles{position:absolute;left:0;top:0;width:100%;pointer-events:none;z-index:-1;overflow:hidden}
 .sea-turtle{position:absolute;left:0;top:0;opacity:.6;will-change:transform}
 .sea-turtle svg{display:block;width:100%;height:auto}
 .sea-turtle .tf{transform-box:fill-box;animation:tf-paddle 2.8s ease-in-out infinite}
@@ -1927,3 +1927,4 @@ body:not(.theme-sage-body) { background-size: 20px 20px; background-position: va
 @keyframes tb-kick{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(6deg)}}
 @media (prefers-reduced-motion: reduce){.sea-turtle .tf,.sea-turtle .tb{animation:none}}
 @media (max-width:640px){.sea-turtle{opacity:.4}}
+.sea-turtle.is-fleeing .tf,.sea-turtle.is-fleeing .tb{animation-duration:.9s}
