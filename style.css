@@ -1908,3 +1908,8 @@ body:not(.theme-sage-body) { background-size: 20px 20px; background-position: va
   transition: transform .5s cubic-bezier(.2,.7,.2,1); }
 .cs-card:hover .cs-orb, .cs-card:focus-visible .cs-orb { transform: scale(1.12) rotate(25deg); }
 @media (prefers-reduced-motion: reduce) { .cs-orb { transition: none; } .cs-card:hover .cs-orb { transform: none; } }
+/* "View case study →": underline the words only, never the arrow */
+.cs-card .cs-link, .cs-card:hover .cs-link, .cs-card:focus-visible .cs-link { text-decoration: none; }
+.cs-card:hover .cs-lt, .cs-card:focus-visible .cs-lt { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+.cs-ar { display: inline-block; text-decoration: none; transition: transform .25s ease; }
+.cs-card:hover .cs-ar, .cs-card:focus-visible .cs-ar { transform: translateX(4px); }
