@@ -290,7 +290,7 @@
   var G = 20, root = document.documentElement;
   var GRIDS = '.cs-grid, .work, .ff-pair, .film-pair, .sw-grid, .award-list, .lv-cards, .levels, .quotes, .phases, .film-grid, .films, .principles, .cred-grid, .flowline, .shots-grid, .proof, .stats, .decision-cards, .check-list, .lead-cards, .wr-list, .ab-path, .ab-cols, .role-scale, .method';
   var STACKS = '.table-scroll, .work > li, .writing > li, .wr-list[data-view="list"] > li, .timeline > li, .problems > details, .cap-list > div';
-  var BLOCKS = '.cs-grid, main table, main > figure, main > nav, main > a.next, .clients, .awards, .section-head, .sw-grid, .award-list, .marquee, .lv-cards, .levels-cols, .role-scale, .work, .writing, .pc, .actions, .ab-banner, .ab-cols, .ab-path, .proof, .ff-pair, .film-pair, .film-grid, .contact-row, .cs-hero, .cover, .about-banner, .stats, .levels, .principles, .method, .phases, .cred-grid, .flowline, .shots, .shots-grid, .table-scroll, .lead-cards, .decision-cards, .check-list, .wr-bar, .wr-list, .timeline, .cap-list, .tree, .problems, .pgroup, .phead';
+  var BLOCKS = '.cs-meta, .cs-grid, main table, main > figure, main > nav, main > a.next, .clients, .awards, .section-head, .sw-grid, .award-list, .marquee, .lv-cards, .levels-cols, .role-scale, .work, .writing, .pc, .actions, .ab-banner, .ab-cols, .ab-path, .proof, .ff-pair, .film-pair, .film-grid, .contact-row, .cs-hero, .cover, .about-banner, .stats, .levels, .principles, .method, .phases, .cred-grid, .flowline, .shots, .shots-grid, .table-scroll, .lead-cards, .decision-cards, .check-list, .wr-bar, .wr-list, .timeline, .cap-list, .tree, .problems, .pgroup, .phead';
   var mod = function (n) { return ((n % G) + G) % G; };
   var busy = false, raf = 0, lastW = 0, lastH = 0;
   // remember each element's own inline style before the grid touches it, so a re-snap restores it exactly
@@ -317,13 +317,24 @@
       return px(cs.borderTopWidth) > 0 && cs.borderTopStyle !== 'none' && !/rgba\(0, 0, 0, 0\)|transparent/.test(cs.borderTopColor) &&
         el.getBoundingClientRect().width >= 200;
     }
+    function sideBySide(el) {
+      var par = el.parentElement; if (!par) return false;
+      var pcs = getComputedStyle(par);
+      if (!/flex/.test(pcs.display) || pcs.flexDirection.indexOf('row') !== 0) return false;
+      var r = el.getBoundingClientRect();
+      return [].some.call(par.children, function (k) {
+        if (k === el || k.offsetParent === null) return false;
+        var q = k.getBoundingClientRect();
+        return q.width > 0 && q.top < r.bottom - 1 && q.bottom > r.top + 1;
+      });
+    }
     function candidates() {
       var set = new Set();
       var main = document.querySelector('main');
       if (!main) return [];
       [].forEach.call(main.children, function (el) { set.add(el); });
       document.querySelectorAll(BLOCKS).forEach(function (el) { set.add(el); });
-      main.querySelectorAll('*').forEach(function (el) { if (lined(el)) set.add(el); });
+      main.querySelectorAll('*').forEach(function (el) { if (lined(el)) set.add(sideBySide(el) && el.parentElement !== main ? el.parentElement : el); });
       return Array.from(set).filter(function (el) {
         if (!visible(el) || el.closest(SKIP)) return false;
         var pos = getComputedStyle(el).position; if (pos === 'absolute' || pos === 'fixed') return false;
@@ -332,7 +343,7 @@
         if (el.parentElement !== main) {
           var pcs = getComputedStyle(el.parentElement);
           var oneCol = pcs.gridTemplateColumns.split(' ').filter(Boolean).length <= 1;
-          if (((pd === 'grid' || pd === 'inline-grid') && !oneCol) || (pd === 'flex' && pcs.flexDirection.indexOf('row') === 0 && pcs.flexWrap !== 'wrap')) return false;
+          if (((pd === 'grid' || pd === 'inline-grid') && !oneCol) || (pd === 'flex' && pcs.flexDirection.indexOf('row') === 0 && pcs.flexWrap !== 'wrap') || sideBySide(el)) return false;
         }
         return true;
       }).sort(function (x, y) { return x.compareDocumentPosition(y) & 4 ? -1 : 1; });
@@ -385,7 +396,7 @@
         var back = G - d, pb = px(getComputedStyle(el).paddingBottom);
         el.__base = el.__base || {};
         if (back <= 6 && pb - back >= 12 && el.__base.trim == null) {
-          el.__base.trim = back; mark(el); el.style.setProperty('padding-bottom', (pb - back) + 'px', 'important'); return;
+          el.__base.trim = back; mark(el); el.style.removeProperty('min-height'); el.style.setProperty('padding-bottom', (pb - back) + 'px', 'important'); return;
         }
         mark(el); el.style.setProperty('min-height', nearest(el, 'h', r.height, d) + 'px', 'important');
       });
@@ -440,6 +451,14 @@
       if (h && mod(h) > 0.5) { mark(tr); tr.style.height = Math.ceil(h / G) * G + 'px'; }
     });
     document.querySelectorAll(STACKS).forEach(roundUp);
+    document.querySelectorAll('main *').forEach(function (row) {
+      var cs = getComputedStyle(row);
+      if (!/flex/.test(cs.display) || cs.flexWrap !== 'wrap' || cs.flexDirection.indexOf('row') !== 0) return;
+      var rg = px(cs.rowGap); if (!mod(rg)) return;
+      var lineds = [].filter.call(row.children, function (k) { return k.offsetParent !== null && (px(getComputedStyle(k).borderTopWidth) > 0 || px(getComputedStyle(k).borderBottomWidth) > 0); });
+      if (lineds.length < 2) return;
+      mark(row); row.style.setProperty('row-gap', Math.max(G, Math.round(rg / G) * G) + 'px', 'important');
+    });
     }
     // each adjustment can shift what follows, so repeat until a full pass changes nothing
     document.querySelectorAll('main *').forEach(function (el) { el.__rounded = false; });

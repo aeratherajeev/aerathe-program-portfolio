@@ -1938,3 +1938,7 @@ body:not(.theme-sage-body) { background-size: 20px 20px; background-position: va
   .sw-sep { display: none; }
   .sw-meta .sw-dest { display: block; margin-top: 4px; width: max-content; }
 }
+
+/* Case-study chips: one even height that sits on the dot grid, text centred */
+.page-case .cs-meta { align-items: flex-start; row-gap: 20px; }
+.page-case .cs-meta span { display: inline-flex; align-items: center; min-height: 40px; padding: 7px 14px; line-height: 1.35; box-sizing: border-box; }
