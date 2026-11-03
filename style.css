@@ -1928,3 +1928,8 @@ body:not(.theme-sage-body) { background-size: 20px 20px; background-position: va
 @media (prefers-reduced-motion: reduce){.sea-turtle .tf,.sea-turtle .tb{animation:none}}
 @media (max-width:640px){.sea-turtle{opacity:.4}}
 .sea-turtle.is-fleeing .tf,.sea-turtle.is-fleeing .tb{animation-duration:.9s}
+/* Field notes: all articles on desktop, the three chosen ones on phones */
+@media (max-width: 760px) {
+  .writing li.w-desk { display: none; }
+  .writing li.w-mlast { border-bottom: 0; }
+}
