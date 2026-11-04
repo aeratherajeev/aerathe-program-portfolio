@@ -2017,3 +2017,31 @@ body:not(.theme-sage-body) { background-size: 20px 20px; background-position: va
 /* --y lifts a logo whose visual weight sits low; --ink darkens logos with very thin strokes */
 .marquee-track img { height: calc(var(--h, 28px) * var(--logo-scale)); transform: translateY(calc(var(--y, 0px) * var(--logo-scale))); width: auto; max-width: none; opacity: 1; filter: brightness(0) opacity(var(--ink, .5)); -webkit-user-drag: none; user-select: none; }
 @media (max-width: 640px) { .marquee { --logo-scale: .875; } }
+
+/* Approach hero: philosophy, five-step flow, and a direction cue */
+.page-approach .ctx-hero { padding-block: 72px 56px; }
+.page-approach .ctx-hero h1 { margin-top: 40px; font-size: clamp(36px, 5.4vw, 56px); line-height: 1.06; letter-spacing: -0.03em; max-width: 14ch; }
+.page-approach .ctx-lede { margin-top: 24px; max-width: 32em; font-family: "Source Serif 4", Georgia, serif; font-size: clamp(21px, 2.4vw, 25px); line-height: 1.5; color: #2b2b33; }
+.page-approach .ctx-approach { margin-top: 36px; font-size: 17px; font-weight: 600; }
+.page-approach .flow5 { list-style: none; margin: 20px 0 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); max-width: var(--wide); }
+.page-approach .flow5 li { position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 14px; padding-right: 16px; }
+.page-approach .flow5 li:not(:last-child)::after { content: ""; position: absolute; left: 60px; right: 4px; top: 24px; height: 1px; background: repeating-linear-gradient(90deg, var(--muted) 0 4px, transparent 4px 8px); opacity: .5; }
+.page-approach .flow5 li:not(:last-child)::before { content: ""; position: absolute; right: 2px; top: 20px; width: 7px; height: 7px; border-top: 1.5px solid var(--muted); border-right: 1.5px solid var(--muted); transform: rotate(45deg); opacity: .7; }
+.page-approach .f5-ic { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 14px; background: var(--soft); box-shadow: inset 0 0 0 1px var(--line); color: var(--fg); }
+.page-approach .f5-ic svg { width: 28px; height: 28px; }
+.page-approach .f5-ic .f { fill: #9fb3f5; fill-opacity: .35; }
+.page-approach .flow5 b { font-size: 15px; font-weight: 600; line-height: 1.35; letter-spacing: -0.01em; max-width: 13ch; }
+.page-approach .ctx-body { margin-top: 48px; max-width: 38em; font-size: 17px; line-height: 1.65; }
+.page-approach .ctx-cue { display: inline-flex; align-items: center; gap: 12px; margin-top: 28px; padding: 10px 18px 10px 10px; border-radius: 999px; background: #f4f3fd; font-size: 15px; line-height: 1.4; color: var(--fg); }
+.page-approach .cue-i { display: grid; place-items: center; flex: none; width: 24px; height: 24px; border-radius: 50%; background: var(--fg); color: var(--bg); font-family: "Source Serif 4", Georgia, serif; font-style: italic; font-weight: 600; font-size: 15px; line-height: 1; }
+@media (max-width: 760px) {
+  .page-approach .flow5 { grid-template-columns: 1fr; }
+  .page-approach .flow5 li { flex-direction: row; align-items: center; gap: 16px; padding: 0 0 22px; }
+  .page-approach .flow5 li:not(:last-child)::after { left: 24px; right: auto; top: 52px; bottom: 2px; width: 1px; height: auto; background: repeating-linear-gradient(180deg, var(--muted) 0 4px, transparent 4px 8px); }
+  .page-approach .flow5 li:not(:last-child)::before { display: none; }
+  .page-approach .flow5 b { max-width: none; }
+  .page-approach .ctx-cue { display: flex; align-items: flex-start; border-radius: 14px; padding: 12px 14px; }
+}
+.page-approach .ctx-hero { padding-bottom: 40px; }
+.page-approach #problems { padding-top: 0; border-top: 0; }
+.page-approach #problems > .pgroup:first-child { margin-top: 0 !important; }
