@@ -178,7 +178,8 @@
   var dir = root.getAttribute('data-dir') === 'right' ? 1 : -1;
   root.classList.add('is-drag');
   var W = 0, x = 0, auto = 0, vel = 0, dragging = false, lastX = 0, lastT = 0, moved = 0, prev = performance.now();
-  function measure() { W = tracks[0].offsetWidth; auto = dir * W / 44000; if (!vel) vel = auto; }
+  // Both rows cruise at the same speed in px per ms, however long each row is
+  function measure() { W = tracks[0].offsetWidth; auto = dir * (window.innerWidth <= 640 ? 0.024 : 0.03); if (!vel) vel = auto; }
   function apply() {
     if (W) { x = x % W; if (x > 0) x -= W; }
     var t = 'translate3d(' + x + 'px,0,0)';
@@ -385,7 +386,8 @@
     function snapBottoms(pass) {
       var main = document.querySelector('main'); if (!main) return;
       main.querySelectorAll('*').forEach(function (el) {
-        if (!bottomLined(el) || el.__rounded) return;
+        // buttons and pills keep their designed height; only their position follows the grid
+        if (!bottomLined(el) || el.__rounded || el.matches('.btn, .chain > *')) return;
         var r = el.getBoundingClientRect(), bottom = r.bottom + window.scrollY;
         // wait for the top to settle on a dot row first, or the height gets corrected twice
         var dt = mod(G / 2 - (r.top + window.scrollY));
@@ -403,6 +405,7 @@
     }
     // round a card up to whole squares from its natural height, so repeated passes never keep growing it
     function roundUp(c) {
+      if (c.matches('.btn, .chain > *')) return;
       c.__base = c.__base || {};
       if (c.__base.nat == null) c.__base.nat = c.getBoundingClientRect().height;
       var h = c.__base.nat, want = Math.ceil(h / G - 0.025) * G;
