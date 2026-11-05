@@ -311,7 +311,7 @@
     // 3. vertical rhythm: block tops and every horizontal line land on a dot row
     //    (dots sit at y = 10, 30, 50 … in page coordinates). Top-level sections are moved by growing the
     //    section above them (padding, so bands never show a gap); everything else gets a little extra margin.
-    var SKIP = '.marquee, .pc-track, .sw-grid, .sea-turtles, .hero-dots';
+    var SKIP = '.marquee, .pc-track, .sw-grid, .sea-turtles, .hero-dots, .gz-art';
     function visible(el) { return el.offsetParent !== null || getComputedStyle(el).position === 'fixed'; }
     function lined(el) {
       var cs = getComputedStyle(el);
@@ -387,7 +387,7 @@
       var main = document.querySelector('main'); if (!main) return;
       main.querySelectorAll('*').forEach(function (el) {
         // buttons and pills keep their designed height; only their position follows the grid
-        if (!bottomLined(el) || el.__rounded || el.matches('.btn, .chain > *')) return;
+        if (!bottomLined(el) || el.__rounded || el.matches('.btn, .chain > *, .gx-phases > li, .gx-qs > li, .gx-proof > li')) return;
         var r = el.getBoundingClientRect(), bottom = r.bottom + window.scrollY;
         // wait for the top to settle on a dot row first, or the height gets corrected twice
         var dt = mod(G / 2 - (r.top + window.scrollY));
@@ -405,7 +405,7 @@
     }
     // round a card up to whole squares from its natural height, so repeated passes never keep growing it
     function roundUp(c) {
-      if (c.matches('.btn, .chain > *')) return;
+      if (c.matches('.btn, .chain > *, .gx-phases > li, .gx-qs > li, .gx-proof > li')) return;
       c.__base = c.__base || {};
       if (c.__base.nat == null) c.__base.nat = c.getBoundingClientRect().height;
       var h = c.__base.nat, want = Math.ceil(h / G - 0.025) * G;
