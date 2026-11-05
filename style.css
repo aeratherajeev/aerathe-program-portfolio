@@ -2636,3 +2636,7 @@ body:not(.theme-sage-body) { background-size: 20px 20px; background-position: va
 
 .page-st .ld-axis span { font-weight: 500; }
 .page-st .ld-axis span b { display: block; margin-bottom: 2px; font-size: 12px; font-weight: 600; color: var(--fg); }
+
+/* case-study covers at 16:9, uncropped */
+.page-case .cover { aspect-ratio: 16 / 9; }
+@media (max-width: 640px) { .page-case .cover { aspect-ratio: 16 / 9; } }
