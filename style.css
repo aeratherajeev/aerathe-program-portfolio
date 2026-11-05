@@ -2904,3 +2904,18 @@ body:not(.theme-sage-body) { background-size: 20px 20px; background-position: va
 
 .page-jk .gv-row { grid-template-columns: minmax(0, .85fr) minmax(0, .85fr) minmax(0, 3.5fr) minmax(0, .85fr) minmax(0, .95fr); }
 .page-jk .gv-tag { display: block; margin-bottom: 2px; font-size: 11px; font-weight: 600; color: var(--acc); }
+
+/* ===== Homepage case-study cards, refreshed (orbs, defined card surface, lift on hover) ===== */
+#work .cs-grid { gap: 20px; }
+#work .cs-card, #work .cs-card:hover, #work .cs-card:focus-visible { border: 0; }
+#work .cs-card { padding: 28px 28px 26px; border-radius: 22px; background: #fff; box-shadow: 0 0 0 1px rgba(13,13,13,.08), 0 1px 2px rgba(13,13,13,.04), 0 18px 40px -24px rgba(13,13,13,.28); transition: box-shadow .25s ease, transform .25s ease; }
+#work .cs-card:hover, #work .cs-card:focus-visible { background: #fff; box-shadow: 0 0 0 1px rgba(13,13,13,.14), 0 1px 2px rgba(13,13,13,.05), 0 26px 50px -24px rgba(13,13,13,.34); transform: translateY(-2px); }
+#work .cs-orb { width: 52px; height: 52px; margin-bottom: 22px; background: radial-gradient(circle at 30% 28%, var(--g1), var(--g2) 55%, var(--g3)); box-shadow: inset 0 0 0 1px rgba(255,255,255,.5), 0 8px 18px -10px var(--g2); }
+#work .cs-tag, #work .cs-card:hover .cs-tag { font-size: 13px; font-weight: 600; color: var(--c); }
+#work .cs-card h3 { margin-top: 10px; font-size: clamp(20px, 2vw, 23px); line-height: 1.15; font-weight: 600; letter-spacing: -0.025em; }
+#work .cs-card p, #work .cs-card:hover p, #work .cs-card:focus-visible p { margin-top: 8px; font-size: 15px; line-height: 1.55; color: var(--muted); }
+#work .cs-res, #work .cs-card:hover .cs-res, #work .cs-card:focus-visible .cs-res { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); font-size: 14px; line-height: 1.5; color: #2b2b33; }
+#work .cs-rl, #work .cs-card:hover .cs-rl, #work .cs-card:focus-visible .cs-rl { color: var(--muted); }
+#work .cs-link, #work .cs-card:hover .cs-link, #work .cs-card:focus-visible .cs-link { padding-top: 18px; font-size: 15px; font-weight: 600; color: var(--fg); }
+@media (max-width: 760px) { #work .cs-card { padding: 22px 22px 22px; } }
+@media (prefers-reduced-motion: reduce) { #work .cs-card:hover { transform: none; } }
