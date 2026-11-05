@@ -2937,3 +2937,78 @@ body:not(.theme-sage-body) { background-size: 20px 20px; background-position: va
 .page-approach .ctx-hero h1 { max-width: none; }
 .page-approach main p.ctx-claim { margin-top: 20px; font-size: clamp(22px, 2.6vw, 28px); line-height: 1.3; font-weight: 600; letter-spacing: -0.02em; color: var(--fg); }
 .page-approach .ctx-claim + .ctx-lede { margin-top: 14px; }
+
+/* =====================================================================
+   TYPE SYSTEM (site-wide hygiene pass). One scale, applied by role.
+   ===================================================================== */
+:root {
+  --t-ink: #0d0d0d; --t-body: #2b2b33; --t-muted: #6b6b78; --t-faint: #a2a2ae;
+  --t-h1: clamp(38px, 5.4vw, 56px);
+  --t-h2: clamp(24px, 2.8vw, 28px);
+  --t-h3l: clamp(20px, 2.2vw, 22px);
+  --t-h3: 19px; --t-item: 17px; --t-lede: clamp(19px, 2.2vw, 22px);
+  --t-body-l: 17px; --t-body-s: 15px; --t-small: 13px; --t-label: 12px;
+}
+
+/* Display */
+html body .wr-hero h1 { font-size: var(--t-h1); letter-spacing: -0.03em; line-height: 1.06; }
+
+/* Section headings (H2) */
+html body .sec-head h2,
+html body .section-head h2,
+html body .contact-sketch h2,
+html body main > .cs-section:not(.ap-closing) > h2,
+html body main > .cs-section.band:not(.ap-closing) > h2 { font-size: var(--t-h2); line-height: 1.2; letter-spacing: -0.02em; font-weight: 600; }
+html body.page-studio .st-pov h3.gz-h3, html body.page-st .gz .st-pov h3.gz-h3 { font-size: var(--t-h2); }
+
+/* Sub-section headings (H3 large) */
+html body .gz h3.gz-h3, html body.page-gz .gz h3.gz-h3,
+html body.page-st .gz .st-layer h3.gz-h3,
+html body .pgroup > h3,
+html body.page-jk .gz .dl-head h3,
+html body #work .cs-card h3 { font-size: var(--t-h3l); line-height: 1.25; letter-spacing: -0.02em; font-weight: 600; }
+html body.page-st .st-shift p { font-size: var(--t-h3l); }
+
+/* Item titles inside diagrams and lists */
+html body.page-gz .gz h3, html body.page-gz .tl-card h3,
+html body.page-gz .md-list h3, html body.page-gz .doc-part h3,
+html body.page-st .st-steps h3, html body.page-st .st-stages h3, html body.page-st .gz h4,
+html body .ms-card h3 { font-size: var(--t-item); line-height: 1.35; letter-spacing: -0.01em; font-weight: 600; }
+html body.page-gz .tl-key h3 { font-size: var(--t-h3); }
+html body.page-gz .gz h3.gz-h3 { font-size: var(--t-h3l); }
+
+/* Ledes */
+html body .cs-hero .lede { font-size: var(--t-lede); }
+
+/* Body text */
+html body .read p, html body .gz-body p, html body .ctx-body { font-size: var(--t-body-l); line-height: 1.65; }
+html body.page-case main > .cs-section:not(.band-dark) .read p, html body.page-case .gz-body p { color: var(--t-body); }
+html body.page-gz .gz-pairs p, html body.page-gz .doc-part p, html body.page-gz .tl-card p,
+html body .pc-panel .pc-sig, html body #work .cs-card p,
+html body.page-st .st-levers p, html body.page-jk .dl-c p,
+html body .pstage p, html body .pstage li, html body .pbody p { font-size: var(--t-body-s); line-height: 1.55; }
+
+/* Small and captions: remove half-pixel sizes */
+html body.page-jk .jk-gv p, html body.page-jk .gv-card p, html body.page-jk .gv-track span,
+html body.page-jk .pg-line p { font-size: var(--t-small); line-height: 1.5; }
+html body.page-jk .gv-track b, html body.page-jk .gv-card b { font-size: 14px; }
+
+/* Labels and tags: one size, sentence case */
+html body .pstage > h3 { font-size: var(--t-label); font-weight: 600; text-transform: none; letter-spacing: 0; color: var(--t-muted); }
+html body .cs-rl, html body #work .cs-rl { font-size: var(--t-label); text-transform: none; letter-spacing: 0; }
+html body .sec-part { font-size: var(--t-label); text-transform: none; letter-spacing: 0; color: var(--t-muted); }
+html body.page-jk .gv-tag, html body.page-jk .gv-gm span { font-size: var(--t-label); }
+
+/* Greys: retire the stray secondary greys */
+html body .pc-meta .pc-n { color: var(--t-muted); }
+/* stragglers */
+html body.page-approach .ptext > span { font-size: var(--t-body-s); }
+html body.page-approach .phases-4 li > span:last-child { font-size: var(--t-small); }
+html body.page-st .ld-axis span { font-size: var(--t-label); }
+html body.page-jk .gv-dh em, html body.page-jk .gv-gm span { font-size: var(--t-label); }
+
+/* Card titles (H3) */
+html body .pc-panel b,
+html body.page-st .st-levers h3, html body.page-jk .jk-orch h3,
+html body.page-gz .tl-key h3, html body .aw-title { font-size: var(--t-h3); line-height: 1.3; letter-spacing: -0.015em; font-weight: 600; }
+
