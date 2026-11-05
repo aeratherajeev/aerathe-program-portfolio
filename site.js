@@ -311,7 +311,7 @@
     // 3. vertical rhythm: block tops and every horizontal line land on a dot row
     //    (dots sit at y = 10, 30, 50 … in page coordinates). Top-level sections are moved by growing the
     //    section above them (padding, so bands never show a gap); everything else gets a little extra margin.
-    var SKIP = '.marquee, .pc-track, .sw-grid, .sea-turtles, .hero-dots, .gz-art, .gz-cmp, .st-art';
+    var SKIP = '.marquee, .pc-track, .sw-grid, .sea-turtles, .hero-dots, .gz-art, .gz-cmp, .st-art, .cover';
     function visible(el) { return el.offsetParent !== null || getComputedStyle(el).position === 'fixed'; }
     function lined(el) {
       var cs = getComputedStyle(el);
@@ -368,7 +368,8 @@
             var prev = el.previousElementSibling;
             while (prev && !visible(prev)) prev = prev.previousElementSibling;
             if (!prev) break;
-            var pb = px(getComputedStyle(prev).paddingBottom); mark(prev); prev.style.setProperty('padding-bottom', nearest(prev, 'pb', pb, d) + 'px', 'important');
+            if (prev.matches('.cover')) { var mb = px(getComputedStyle(prev).marginBottom); mark(prev); prev.style.setProperty('margin-bottom', nearest(prev, 'mb', mb, d) + 'px', 'important'); }
+            else { var pb = px(getComputedStyle(prev).paddingBottom); mark(prev); prev.style.setProperty('padding-bottom', nearest(prev, 'pb', pb, d) + 'px', 'important'); }
           } else {
             // margins collapse with the block above, so start from whichever margin is larger
             var sib = el.previousElementSibling, mt = px(getComputedStyle(el).marginTop);

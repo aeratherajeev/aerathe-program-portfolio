@@ -2640,3 +2640,135 @@ body:not(.theme-sage-body) { background-size: 20px 20px; background-position: va
 /* case-study covers at 16:9, uncropped */
 .page-case .cover { aspect-ratio: 16 / 9; }
 @media (max-width: 640px) { .page-case .cover { aspect-ratio: 16 / 9; } }
+
+
+/* ===== JK Cement case study (page-jk) ===== */
+/* JK Cement 7-app transformation, redesigned. Builds on .page-gz and .page-st. */
+
+/* 01 impact */
+.page-jk .jk-impact { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); gap: 32px; align-items: start; max-width: var(--wide); }
+.page-jk .jk-biz { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.page-jk .jk-biz li { display: flex; flex-direction: column; padding: 20px 22px; border-radius: 16px; background: var(--bg); box-shadow: inset 0 0 0 1px var(--line); }
+.page-jk .jk-biz b { font-size: clamp(34px, 3.8vw, 44px); line-height: 1; letter-spacing: -0.04em; font-weight: 600; }
+.page-jk .jk-biz .mt-u { margin-top: 8px; font-size: 14px; font-weight: 600; color: var(--acc); }
+.page-jk .jk-biz .mt-l { margin-top: 2px; min-height: 0; font-size: 15px; line-height: 1.45; color: var(--ink2); }
+.page-jk .jk-impact .gz-cap { margin-top: 12px; }
+.page-jk .jk-prog { padding: 22px 24px 24px; border-radius: 16px; background: var(--acc-soft); }
+.page-jk .jk-prog .gz-ticks { margin-top: 0; gap: 12px; }
+.page-jk .jk-prog .gz-ticks li { font-size: 15px; line-height: 1.5; }
+.page-jk .jk-prog .gz-ticks i { background: var(--acc); }
+
+/* 02 challenge */
+.page-jk .jk-eco { max-width: var(--wide); margin: 32px 0 0; }
+.page-jk .jk-eco ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 8px; }
+.page-jk .jk-eco li { position: relative; display: flex; flex-direction: column; gap: 10px; padding: 14px 14px 16px; border-radius: 14px; background: var(--bg); box-shadow: inset 0 0 0 1px var(--line); font-size: 15px; font-weight: 600; }
+.page-jk .jk-eco li span { display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--acc-soft); color: var(--acc); font-size: 12px; }
+.page-jk .jk-hard { max-width: var(--wide); margin-top: 32px; }
+.page-jk .jk-hard ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.page-jk .jk-hard li { position: relative; padding: 14px 16px 14px 34px; border-radius: 12px; background: #fff6f1; font-size: 15px; line-height: 1.4; color: var(--ink2); }
+.page-jk .jk-hard li::before { content: ""; position: absolute; left: 16px; top: 21px; width: 8px; height: 8px; border-radius: 50%; background: var(--warn); }
+.page-jk #challenge .gz-key { margin-top: 48px; }
+
+/* 03 decision log */
+.page-jk .jk-dlog { list-style: none; margin: 0; padding: 0; max-width: var(--wide); display: flex; flex-direction: column; gap: 16px; }
+.page-jk .dl-row { padding: 26px 28px 28px; border-radius: 20px; background: var(--bg); box-shadow: inset 0 0 0 1px var(--line); scroll-margin-top: 96px; }
+.page-jk .dl-head { display: flex; align-items: baseline; gap: 14px; padding-bottom: 18px; border-bottom: 1px solid var(--line); }
+.page-jk .dl-n { font-size: 14px; font-weight: 600; color: var(--acc); font-variant-numeric: tabular-nums; }
+.page-jk .gz .dl-head h3 { font-size: 21px; letter-spacing: -0.02em; }
+.page-jk .dl-cols { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr) minmax(0, 1.2fr); gap: 28px; padding-top: 18px; }
+.page-jk .dl-k { display: block; margin-bottom: 8px; font-size: 12px; font-weight: 600; color: var(--muted); }
+.page-jk .dl-c p { font-size: 15px; line-height: 1.6; color: var(--muted); }
+.page-jk .dl-c:nth-child(2) p { color: var(--ink2); }
+.page-jk .dl-out { margin: -6px -8px -8px 0; padding: 14px 16px 16px; border-radius: 14px; background: var(--acc-soft); }
+.page-jk .dl-out .dl-k { color: var(--acc); }
+.page-jk .dl-out p { color: var(--fg); font-weight: 500; }
+
+.page-jk .dl-funnel { margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(90,95,214,.2); }
+.page-jk main p.fn-in { font-size: 13px; color: var(--muted); font-weight: 400; }
+.page-jk .fn-in b { font-size: 18px; color: var(--fg); margin-right: 4px; letter-spacing: -0.02em; }
+.page-jk .dl-funnel > i { display: block; width: 0; height: 0; margin: 8px 0 8px 10px; border-left: 7px solid transparent; border-right: 7px solid transparent; border-top: 8px solid var(--acc); }
+.page-jk .dl-funnel ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.page-jk .dl-funnel li { padding: 7px 10px; border-radius: 8px; background: var(--bg); font-size: 13px; font-weight: 600; color: var(--fg); }
+
+.page-jk .dl-split { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 14px; }
+.page-jk .dl-split div { display: flex; flex-direction: column; gap: 4px; padding: 10px 12px; border-radius: 10px; background: var(--bg); }
+.page-jk .dl-split span { font-size: 12px; line-height: 1.35; color: var(--muted); }
+.page-jk .dl-split b { font-size: 14px; line-height: 1.3; }
+.page-jk .dl-split div:last-child { box-shadow: inset 0 0 0 1.5px var(--acc); }
+
+/* 04 phase-gate */
+.page-jk .jk-pg { max-width: var(--wide); margin: 40px 0 0; padding: 36px 28px 24px; border-radius: 22px; background: var(--bg); box-shadow: inset 0 0 0 1px var(--line); }
+.page-jk .pg-line { position: relative; list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px; }
+.page-jk .pg-line::before { content: ""; position: absolute; left: 8px; right: 8px; top: 33px; height: 1.5px; background: #cfd2e6; }
+.page-jk .pg-line li { position: relative; display: flex; flex-direction: column; padding-right: 4px; }
+.page-jk .pg-step { font-size: 12px; font-weight: 600; color: var(--muted); font-variant-numeric: tabular-nums; }
+.page-jk .pg-dot { position: relative; z-index: 1; display: block; width: 16px; height: 16px; margin: 10px 0 18px; border-radius: 50%; background: var(--bg); box-shadow: inset 0 0 0 1.5px #8c90b3; }
+.page-jk .pg-line em { align-self: flex-start; margin-bottom: 6px; padding: 2px 8px; border-radius: 999px; background: var(--acc); color: #fff; font-style: normal; font-size: 11px; font-weight: 600; }
+.page-jk .pg-line b { font-size: 16px; line-height: 1.3; font-weight: 600; }
+.page-jk .pg-line p { margin-top: 6px !important; font-size: 13px; line-height: 1.5; color: var(--muted); }
+.page-jk .pg-gate::after { content: ""; position: absolute; inset: -12px -8px -12px -12px; z-index: 0; border-radius: 14px; background: var(--acc-soft); }
+.page-jk .pg-gate > * { position: relative; z-index: 1; }
+.page-jk .pg-gate .pg-dot { width: 20px; height: 20px; margin: 8px 0 16px -2px; background: var(--acc); box-shadow: 0 0 0 5px rgba(90,95,214,.18); transform: rotate(45deg); border-radius: 4px; }
+.page-jk .pg-gate .pg-step { color: var(--acc); }
+.page-jk .pg-kpi { display: flex; align-items: center; flex-wrap: wrap; gap: 10px 16px; margin-top: 36px; padding-top: 18px; border-top: 1px dashed #cfd2e6; }
+.page-jk .pg-kpi > span { font-size: 12px; font-weight: 600; color: var(--muted); }
+.page-jk .pg-kpi ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.page-jk .pg-kpi li { padding: 5px 12px; border-radius: 999px; box-shadow: inset 0 0 0 1px #c9ccf4; color: var(--acc); font-size: 13px; font-weight: 600; }
+
+/* 05 orchestration: 2x2 */
+.page-jk .jk-orch { grid-template-columns: 1fr 1fr; margin-top: 0; gap: 40px 48px; }
+
+/* 06 */
+.page-jk .jk-after { margin-top: 28px; }
+
+@media (max-width: 960px) {
+  .page-jk .jk-impact { grid-template-columns: 1fr; }
+  .page-jk .jk-eco ol { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .page-jk .jk-hard ul { grid-template-columns: 1fr 1fr; }
+  .page-jk .dl-cols { grid-template-columns: 1fr; gap: 16px; }
+  .page-jk .dl-out { margin: 0; }
+  .page-jk .pg-line { grid-template-columns: 1fr; gap: 0; padding-left: 4px; }
+  .page-jk .pg-line::before { left: 11px; right: auto; top: 10px; bottom: 10px; width: 1.5px; height: auto; }
+  .page-jk .pg-line li { display: grid; grid-template-columns: 24px minmax(0, 1fr); column-gap: 16px; padding: 10px 0 18px; }
+  .page-jk .pg-line li > * { grid-column: 2; }
+  .page-jk .pg-dot { grid-column: 1 !important; grid-row: 1 / span 4; margin: 2px 0 0; }
+  .page-jk .pg-gate .pg-dot { margin: 0 0 0 -2px; }
+  .page-jk .pg-gate::after { inset: 0 -12px 6px -8px; }
+}
+@media (max-width: 640px) {
+  .page-jk .jk-biz li { padding: 16px; }
+  .page-jk .jk-eco ol { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .page-jk .jk-hard ul { grid-template-columns: 1fr; }
+  .page-jk .dl-row { padding: 20px 18px 22px; }
+  .page-jk .jk-orch { grid-template-columns: 1fr; gap: 28px; }
+  .page-jk .jk-pg { padding: 24px 18px 20px; }
+}
+
+.page-jk #governance .gz-body { margin-top: 16px; }
+
+.page-jk main .cs-hero p.jk-with { margin: 16px 0 0 !important; font-size: 14px !important; line-height: 1.5; color: var(--muted) !important; }
+@media (max-width: 960px) { .page-jk .pg-line em { justify-self: start; } }
+
+.page-jk .dl-funnel li b { display: block; font-size: 13px; font-weight: 600; }
+.page-jk .dl-funnel li span { display: block; margin-top: 2px; font-size: 12px; line-height: 1.45; font-weight: 400; color: var(--muted); }
+.page-jk .dl-c p + p { margin-top: 10px; }
+
+.page-jk .dl-c:nth-child(2) .dl-funnel { margin: 14px 0; padding: 14px; border: 0; border-radius: 12px; background: var(--acc-soft); }
+.page-jk .dl-c:nth-child(2) .dl-funnel + p { margin-top: 0; }
+.page-jk .dl-out { align-self: start; }
+
+/* impact: labels share a row, the program card matches the metric grid's height */
+.page-jk .jk-impact { grid-template-rows: auto auto auto; row-gap: 0; }
+.page-jk .jk-l1 { grid-column: 1; grid-row: 1; }
+.page-jk .jk-l2 { grid-column: 2; grid-row: 1; }
+.page-jk .jk-biz { grid-column: 1; grid-row: 2; }
+.page-jk .jk-prog { grid-column: 2; grid-row: 2; align-self: stretch; display: flex; align-items: center; }
+.page-jk .jk-src { grid-column: 1 / -1; grid-row: 3; }
+@media (max-width: 960px) {
+  .page-jk .jk-l1, .page-jk .jk-l2, .page-jk .jk-biz, .page-jk .jk-prog, .page-jk .jk-src { grid-column: 1; grid-row: auto; }
+  .page-jk .jk-src { order: 1; }
+  .page-jk .jk-l2 { order: 2; margin-top: 32px; }
+  .page-jk .jk-prog { order: 3; }
+  .page-jk .jk-impact { display: flex; flex-direction: column; }
+}
+@media (max-width: 960px) { .page-jk main .gz p.jk-l2 { margin-top: 36px; } }
