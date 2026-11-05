@@ -2877,3 +2877,30 @@ body:not(.theme-sage-body) { background-size: 20px 20px; background-position: va
 .page-jk .gv-st { padding-top: 18px; }
 .page-jk .jk-gv { --lineY: 60.5px; }
 @media (max-width: 960px) { .page-jk .gv-st { padding-top: 8px; } }
+
+/* ===== hygiene pass ===== */
+/* decision log: outcome panel sits inside the column grid, its label on the same baseline as the others */
+.page-jk .dl-out { margin: 0; padding: 0 16px 16px; border-radius: 14px; }
+.page-jk .dl-out .dl-k { padding-top: 0; }
+.page-jk .dl-cols { align-items: start; }
+.page-jk .dl-out { padding-top: 0; background: none; }
+.page-jk .dl-out > p, .page-jk .dl-out > .dl-split { }
+.page-jk .dl-out { position: relative; }
+.page-jk .dl-out::before { content: ""; position: absolute; z-index: 0; inset: -12px -4px -4px -4px; border-radius: 14px; background: var(--acc-soft); }
+.page-jk .dl-out > * { position: relative; z-index: 1; }
+.page-jk .dl-out { padding: 0 12px 4px; }
+/* consistent column measure for statements */
+.page-jk main p.gz-key { max-width: 680px; }
+/* governance readability */
+.page-jk .gv-card b { font-size: 14px; line-height: 1.35; }
+.page-jk .gv-card p { font-size: 13px; line-height: 1.5; }
+.page-jk .gv-card em { font-size: 12px; }
+.page-jk .gv-c1, .page-jk .gv-c2 { align-self: stretch; }
+.page-jk .gv-gm span { margin-top: 10px; }
+.page-jk .gv-loop { top: -10px; }
+.page-jk .gv-track b { font-size: 13.5px; }
+.page-jk .gv-track span { font-size: 12.5px; }
+.page-jk main p.gv-dh { margin-top: 0 !important; }
+
+.page-jk .gv-row { grid-template-columns: minmax(0, .85fr) minmax(0, .85fr) minmax(0, 3.5fr) minmax(0, .85fr) minmax(0, .95fr); }
+.page-jk .gv-tag { display: block; margin-bottom: 2px; font-size: 11px; font-weight: 600; color: var(--acc); }
