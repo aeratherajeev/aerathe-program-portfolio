@@ -132,9 +132,26 @@
   <div class="gz" id="governance">
     <div class="sec-head"><span class="sec-ill"><svg viewBox="0 0 48 48" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="8" width="28" height="34" rx="3"/><path d="M17 18l3 3 6-6M17 30l3 3 6-6M29 19h4M29 31h4"/></g></svg></span><div><span class="sec-n">04</span><h2>How the program was governed</h2></div></div>
     <p class="gz-body-lead">A phase-gate model built around early risk resolution.</p>
-    <div class="gz-body"><p>The program operated through defined checkpoints that aligned business requirements, technical feasibility, design maturity, and delivery readiness across workstreams.</p></div>
-    <figure class="jk-pg st-art" aria-label="Program enablement across six stages, with two gates">
-      <ol class="pg-line"><li class=""><span class="pg-step">01</span><i class="pg-dot" aria-hidden="true"></i><b>Intake</b><p>Requirements, success metrics, RACI, SOW</p></li><li class=""><span class="pg-step">02</span><i class="pg-dot" aria-hidden="true"></i><b>Discovery</b><p>Stakeholder map, ambiguity log, KPI mapping</p></li><li class="pg-gate"><span class="pg-step">03</span><i class="pg-dot" aria-hidden="true"></i><em>Gate 1</em><b>Wireframes</b><p>Backend feasibility and API validation at ~60% design completion</p></li><li class="pg-gate"><span class="pg-step">04</span><i class="pg-dot" aria-hidden="true"></i><em>Gate 2</em><b>UI</b><p>Latency, edge cases, and error states before design freeze</p></li><li class=""><span class="pg-step">05</span><i class="pg-dot" aria-hidden="true"></i><b>Handoff</b><p>Annotated specifications, UX acceptance criteria</p></li><li class=""><span class="pg-step">06</span><i class="pg-dot" aria-hidden="true"></i><b>QA → UAT → Launch</b><p>UX and functional QA, readiness, retrospectives</p></li></ol>
+    <div class="gz-body"><p>Work moved through defined stages, but design itself was iterative. Wireframes and UI design evolved together while technical feasibility was validated alongside them. Two decision gates kept that iteration governed: each confirmed that business requirements, technical feasibility, design maturity, and delivery readiness were aligned before the program committed to the next stage.</p></div>
+    <figure class="jk-gv st-art" aria-label="Phase-gate model: Intake, Discovery, an iterative design stage with two gates and a parallel technical feasibility track, Handoff, then QA, UAT and Launch">
+      <div class="gv-row">
+        <div class="gv-st"><span class="gv-n">01</span><i class="gv-dot"></i><b>Intake</b><p>Requirements, success metrics, RACI, SOW</p></div>
+        <div class="gv-st"><span class="gv-n">02</span><i class="gv-dot"></i><b>Discovery</b><p>Stakeholder mapping, ambiguity log, KPI alignment</p></div>
+        <div class="gv-design">
+          <p class="gv-dh"><span class="gv-n">03</span>Design stage <em>↻ Iterative</em></p>
+          <div class="gv-in">
+            <div class="gv-sub gv-wf"><i class="gv-dot"></i><b>Wireframes</b><p>Information architecture, user flows, structural validation</p></div>
+            <div class="gv-gm gv-g1"><i class="gv-loop" aria-hidden="true">⇄</i><i class="gv-dia"></i><span>Gate 1</span></div>
+            <div class="gv-sub gv-ui"><i class="gv-dot"></i><b>UI design</b><p>Visual design, interactions, latency, edge cases, error states</p></div>
+            <div class="gv-gm gv-g2"><i class="gv-dia"></i><span>Gate 2</span></div>
+            <div class="gv-card gv-c1"><i class="gv-dia"></i><div><b>Gate 1 · Feasibility and structure confirmed</b><p>At ~60% design completion. Backend, APIs and architecture validated.</p><em>Proceed / Rework</em></div></div>
+            <div class="gv-card gv-c2"><i class="gv-dia"></i><div><b>Gate 2 · Design freeze</b><p>Latency, edge cases and error states validated.</p><em>Proceed / Rework</em></div></div>
+            <div class="gv-track"><b>Technical feasibility track</b><span>API validation · backend readiness · architectural constraints</span></div>
+          </div>
+        </div>
+        <div class="gv-st"><span class="gv-n">04</span><i class="gv-dot"></i><b>Handoff</b><p>Annotated specifications, UX acceptance criteria</p></div>
+        <div class="gv-st"><span class="gv-n">05</span><i class="gv-dot"></i><b>QA → UAT → Launch</b><p>Functional and UX validation, readiness, retrospectives</p></div>
+      </div>
       <div class="pg-kpi"><span>Shared program KPIs, tracked across every stage</span><ul><li>Time to first transaction</li><li>Transaction conversion rate</li><li>Support call volume</li></ul></div>
     </figure>
   </div>
