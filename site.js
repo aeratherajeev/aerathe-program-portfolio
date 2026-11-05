@@ -311,7 +311,7 @@
     // 3. vertical rhythm: block tops and every horizontal line land on a dot row
     //    (dots sit at y = 10, 30, 50 … in page coordinates). Top-level sections are moved by growing the
     //    section above them (padding, so bands never show a gap); everything else gets a little extra margin.
-    var SKIP = '.marquee, .pc-track, .sw-grid, .sea-turtles, .hero-dots, .gz-art';
+    var SKIP = '.marquee, .pc-track, .sw-grid, .sea-turtles, .hero-dots, .gz-art, .gz-cmp';
     function visible(el) { return el.offsetParent !== null || getComputedStyle(el).position === 'fixed'; }
     function lined(el) {
       var cs = getComputedStyle(el);
